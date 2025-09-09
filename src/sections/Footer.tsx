@@ -65,7 +65,7 @@ export default function Footer() {
       </div>
       <hr />
       <p className="text-center m-8">
-        Developed by ADG | &copy; 2024 All rights reserved.
+        Developed by ADG | &copy; 2025 All rights reserved.
       </p>
     </section>
   );
