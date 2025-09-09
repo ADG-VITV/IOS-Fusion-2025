@@ -8,6 +8,8 @@ import Partners from "@/sections/Partners";
 import FAQ from "@/sections/FAQ";
 import Footer from "@/sections/Footer";
 import ScrollTop from "@/components/ScrollTop";
+// import Footer from "@/sections/Footer";
+// import ScrollTop from "@/components/ScrollTop";
 
 export default function Home() {
 

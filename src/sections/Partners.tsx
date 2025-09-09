@@ -2,17 +2,19 @@ import Image from "next/image";
 
 export default function Partners() {
   return (
-    <section id="partners" className="px-8 md:px-16 lg:px-32 py-16 bg-[#1A1A1A] text-white">
-      <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold m-4 text-center">PAST PARTNERS</h1>
-      <div className="flex flex-wrap justify-center md:justify-around gap-8 m-4 my-20">
-        <div className="w-[7rem] md:w-[10rem]">
-          <Image src="/mcd.png" alt="McDonald's" width={500} height={500} className="w-full" />
+    <section id="partners" className="px-8 md:px-16 lg:px-32 py-16 bg-gradient-to-r from-[#0f172a] via-[#1a1a1a] to-[#0f172a] text-white">
+      <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-12 text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">
+        PAST PARTNERS
+      </h1>
+      <div className="flex flex-wrap justify-center md:justify-around gap-10">
+        <div className="w-[7rem] md:w-[10rem] hover:scale-110 transition-transform duration-300">
+          <Image src="/mcd.png" alt="McDonald's" width={500} height={500} className="w-full drop-shadow-[0_0_18px_rgba(239,68,68,0.7)]" />
         </div>
-        <div className="w-[7rem] md:w-[10rem]">
-          <Image src="/wss.png" alt="Wharf Street Strategies" width={500} height={500} className="w-full" />
+        <div className="w-[7rem] md:w-[10rem] hover:scale-110 transition-transform duration-300">
+          <Image src="/wss.png" alt="Wharf Street Strategies" width={500} height={500} className="w-full drop-shadow-[0_0_18px_rgba(56,189,248,0.7)]" />
         </div>
-        <div className="w-[7rem] md:w-[10rem]">
-          <Image src="/polygon.png" alt="Polygon" width={500} height={500} className="w-full" />
+        <div className="w-[7rem] md:w-[10rem] hover:scale-110 transition-transform duration-300">
+          <Image src="/polygon.png" alt="Polygon" width={500} height={500} className="w-full drop-shadow-[0_0_18px_rgba(147,51,234,0.7)]" />
         </div>
       </div>
     </section>

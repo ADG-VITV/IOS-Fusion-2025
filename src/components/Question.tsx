@@ -13,13 +13,11 @@ export default function Question({ ques, ans }: QuestionProps) {
   const contentRef = useRef<HTMLDivElement | null>(null);
   const [contentHeight, setContentHeight] = useState(0);
 
-  const toggle = () => {
-    setIsOpen((prev) => !prev);
-  };
+  const toggle = () => setIsOpen((prev) => !prev);
 
   useEffect(() => {
-    if (contentRef.current) {
-      setContentHeight(contentRef.current.clientHeight);
+    if (questionRef.current) {
+      setContentHeight(questionRef.current.clientHeight);
     }
   }, [isOpen]);
 
@@ -29,31 +27,31 @@ export default function Question({ ques, ans }: QuestionProps) {
         setIsOpen(false);
       }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   return (
     <div
       ref={questionRef}
-      className={`border border-gray-500 rounded-lg lg:w-[80%] w-[100%] ${
-        isOpen ? "bg-[#5F2EEA] border-[#5F2EEA]" : ""
-      }`}
+      
+      className={`border rounded-lg lg:w-[80%] w-[100%] transition-all duration-300 
+      ${isOpen 
+        ? "bg-[#5F2EEA]/20 border-[#5F2EEA] shadow-[0_0_20px_rgba(95,46,234,0.6)]" 
+        : "bg-[#111827] border-gray-600 hover:shadow-[0_0_15px_rgba(56,189,248,0.4)] hover:border-cyan-400"}`}
     >
       <div
         onClick={toggle}
         className="h-16 md:h-[3rem] items-center justify-between flex p-4 cursor-pointer"
       >
-        <p className="text-[0.9rem] md:text-[1rem]">{ques}</p>
+        <p className={`text-[0.9rem] md:text-[1rem] ${isOpen ? "text-cyan-300" : "text-gray-200"}`}>
+          {ques}
+        </p>
         <p className="text-2xl">
           {isOpen ? (
-            <MdKeyboardArrowDown className="transition-all duration-300 [transition-timing-function:cubic-bezier(0.22, 1, 0.36, 1)]" />
+            <MdKeyboardArrowDown className="text-[#5F2EEA] transition-all duration-300" />
           ) : (
-            <MdKeyboardArrowRight className="transition-all duration-300 [transition-timing-function:cubic-bezier(0.22, 1, 0.36, 1)]" />
+            <MdKeyboardArrowRight className="text-gray-400 transition-all duration-300" />
           )}
         </p>
       </div>
@@ -64,10 +62,9 @@ export default function Question({ ques, ans }: QuestionProps) {
           transition: "all 300ms cubic-bezier(0.3, 0, 0.2, 1)",
           overflow: "hidden",
         }}
-        className="transition-all duration-300 ease-in"
       >
-        <hr className="mx-4 text-center" />
-        <p className="mx-4 md:my-3 my-5">{ans}</p>
+        <hr className="mx-4 border-[#38bdf8]/40" />
+        <p className="mx-4 md:my-3 my-5 text-gray-300">{ans}</p>
       </div>
     </div>
   );
