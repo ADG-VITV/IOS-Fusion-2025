@@ -34,6 +34,7 @@ export default function Question({ ques, ans }: QuestionProps) {
   return (
     <div
       ref={questionRef}
+      
       className={`border rounded-lg lg:w-[80%] w-[100%] transition-all duration-300 
       ${isOpen 
         ? "bg-[#5F2EEA]/20 border-[#5F2EEA] shadow-[0_0_20px_rgba(95,46,234,0.6)]" 

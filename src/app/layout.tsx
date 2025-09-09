@@ -8,8 +8,8 @@ const archivo = Archivo({
 });
 
 export const metadata: Metadata = {
-  title: "iOSFusion 7.0 | ADG",
-  description: "iOS Fusion 7.0",
+  title: "iOSFusion 8.0 | ADG",
+  description: "iOS Fusion 8.0",
 };
 
 export default function RootLayout({
