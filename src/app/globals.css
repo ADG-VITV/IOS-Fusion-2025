@@ -5,18 +5,25 @@
   --foreground: #171717;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
 @media (prefers-color-scheme: dark) {
   :root {
     --background: linear-gradient(to right, #1e1b4b, #000000);
     --foreground: #ededed;
   }
+}
+
+@font-face {
+   font-family: "Monument Extended Ultralight";
+    src: url("https://db.onlinewebfonts.com/t/9b310b2d91dfaf3b73ac6ea66c8351b2.eot");
+    src: url("https://db.onlinewebfonts.com/t/9b310b2d91dfaf3b73ac6ea66c8351b2.eot?#iefix")format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/9b310b2d91dfaf3b73ac6ea66c8351b2.woff2")format("woff2"),
+    url("https://db.onlinewebfonts.com/t/9b310b2d91dfaf3b73ac6ea66c8351b2.woff")format("woff"),
+    url("https://db.onlinewebfonts.com/t/9b310b2d91dfaf3b73ac6ea66c8351b2.ttf")format("truetype"),
+    url("https://db.onlinewebfonts.com/t/9b310b2d91dfaf3b73ac6ea66c8351b2.svg#Monument Extended Ultralight")format("svg");
+}
+
+.custom-font {
+  font-family: "Monument Extended Ultralight";
 }
 
 body {
