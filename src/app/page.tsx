@@ -3,7 +3,7 @@ import React from "react";
 // import LandingPageMobile from "@/sections/Home-mobile";
 import Description from "@/sections/Description";
 // import Speakers from "@/sections/Speakers";
-// import Timeline from "@/sections/Timeline";
+import Timeline from "@/sections/Timeline";
 // import Partners from "@/sections/Partners";
 // import FAQ from "@/sections/FAQ";
 // import Footer from "@/sections/Footer";
@@ -20,9 +20,9 @@ export default function Home() {
         <LandingPageMobile />
       </div> */}
       <Description />
-      {/* <Speakers />
+      {/* <Speakers /> */}
       <Timeline />
-      <Partners />
+      {/* <Partners />
       <FAQ />
       <Footer />
       <ScrollTop /> */}
