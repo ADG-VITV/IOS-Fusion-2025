@@ -40,14 +40,14 @@ export default function Timeline() {
   return (
     <section
       id="timeline"
-      className="px-6 py-8 lg:px-32 lg:py-1 text-white" 
+      className="px-6 py-12 md:py-16 lg:px-32 lg:py-20 text-white"
     >
-      <h1 className="text-3xl lg:text-5xl font-bold lg:m-4">TIMELINE</h1>
+      <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold md:m-2 lg:m-4">TIMELINE</h1>
       <div className="flex lg:mx-auto h-full" contentEditable={false}>
-        <div className="flex flex-col w-full text-2xl lg:text-5xl gap-8 my-12 items-center font-bold relative">
-          <div className="flex w-full justify-between lg:justify-evenly">
+        <div className="flex flex-col w-full text-xl md:text-2xl lg:text-5xl gap-8 my-8 md:my-12 items-center font-bold relative">
+          <div className="flex w-full justify-between md:justify-evenly gap-6">
             <h1>DAY 1</h1>
-            <div className="flex flex-col gap-4 mb-5">
+            <div className="flex flex-col gap-4 mb-5 max-w-full">
               <Event
                 key={0}
                 onClick={() => handleClick(3)}
@@ -67,9 +67,9 @@ export default function Timeline() {
                
             </div>
           </div>
-          <div className="flex w-full justify-between lg:justify-evenly">
+          <div className="flex w-full justify-between md:justify-evenly gap-6">
             <h1>DAY 2</h1>
-            <div className="flex flex-col gap-4 mb-5">
+            <div className="flex flex-col gap-4 mb-5 max-w-full">
               <Event
                 key={2}
                 onClick={() => handleClick(1)}
@@ -87,7 +87,7 @@ export default function Timeline() {
                 venue="MGB 303, 304"
               />
             </div>
-            <div className="h-full flex justify-center items-center absolute top-0 left-[18%] lg:left-[35%] rotate-0">
+            <div className="hidden md:flex h-full justify-center items-center absolute top-0 left-[25%] lg:left-[35%] rotate-0">
               <Slider
                 value={range}
                 onChange={handleRangeChange}

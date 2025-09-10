@@ -12,7 +12,7 @@ export default function Home() {
           <nav className="flex justify-between">
             <Image
               className="w-[6rem]"
-              src="https://raw.githubusercontent.com/satyamdwivedi7/Images/main/iOSF.png"
+              src="/adglogo.png"
               width={500}
               height={500}
               alt="Landing page"
@@ -50,28 +50,18 @@ export default function Home() {
               </button>
             </div>
           </div>
-          <div className="bg-gradient-to-b from-transparent to-black h-64 w-full z-10 absolute bottom-0 left-0"></div>
-          <div className="flex flex-col justify-center items-center relative w-[15rem] mx-auto">
+          <div className="flex flex-col justify-center items-center w-full mt-6">
             <Image
-              className="w-[70%] "
-              src="/iphone.png"
-              alt="iphone"
+              className="w-40 opacity-80"
+              src="/ADG.png"
+              alt="ADG"
               width={500}
               height={500}
             />
-            <div className="absolute text-xl">
-              <CountdownTimer targetDate="2024-09-27T10:00:00" />
+            <div className="mt-4 text-3xl">
+              <CountdownTimer targetDate="2025-09-26T10:00:00" />
             </div>
           </div>
-        </div>
-        <div className="">
-          <Image
-            className="absolute bottom-0 z-20"
-            src="/ADG-mobile.png"
-            alt="ADG"
-            width={500}
-            height={500}
-          />
         </div>
       </main>
     </>
