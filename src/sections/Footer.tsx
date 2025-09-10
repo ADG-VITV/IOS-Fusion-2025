@@ -13,7 +13,7 @@ export default function Footer() {
     <section className="bg-[#1A1A1A] text-white md:px-32 md:py-4 p-8">
       <div className="md:flex md:flex-row justify-between items-center sm:m-8">
         <div className="w-[10rem] mb-6 rounded-full ">
-            <Image src="https://raw.githubusercontent.com/satyamdwivedi7/Images/main/iOSF.png" alt="adg" width={500} height={500} />
+            <Image src="/adglogo.png" alt="adg" width={500} height={500} />
             
         </div>
         <div className="md:w-[20%] w-[80%] mb-6">
