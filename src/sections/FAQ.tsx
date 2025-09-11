@@ -5,7 +5,7 @@ export default function FAQ() {
   return (
     <section
       id="faq"
-      className=" text-white md:px-32 md:py-20 h-full p-6 sm:p-10"
+      className="scroll-mt-24 md:scroll-mt-28 text-white md:px-32 md:py-20 p-6 sm:p-10"
     >
       <h1 className="text-5xl font-bold m-4">FAQ</h1>
       <div className="flex flex-col gap-4 sm:gap-8 m-4 ">

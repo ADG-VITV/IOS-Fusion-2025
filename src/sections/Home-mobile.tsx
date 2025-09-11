@@ -7,7 +7,7 @@ export default function Home() {
   const whatsappURL = `https://wa.me/${phoneNumber}`;
   return (
     <>
-      <main className="bg-black h-[100vh]">
+      <main className="bg-black min-h-screen">
         <div className="p-4 h-full">
           <nav className="flex justify-between">
             <Image
@@ -52,7 +52,7 @@ export default function Home() {
           </div>
           <div className="flex flex-col justify-center items-center w-full mt-6">
             <Image
-              className="w-40 opacity-80"
+              className="w-28 sm:w-32 opacity-70"
               src="/ADG.png"
               alt="ADG"
               width={500}

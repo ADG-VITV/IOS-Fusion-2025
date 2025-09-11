@@ -2,7 +2,7 @@ export default function Description() {
     return (
     <section
         id="about"
-        className="w-full bg-black py-16 md:py-24 lg:py-28 flex flex-col justify-center items-center"
+        className="scroll-mt-24 md:scroll-mt-28 w-full bg-black py-16 md:py-24 lg:py-28 flex flex-col justify-center items-center"
     >
         <div className="flex flex-col items-center sm:hidden text-white m-6">
         <p className="text-3xl custom-font">
