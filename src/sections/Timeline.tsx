@@ -40,7 +40,7 @@ export default function Timeline() {
   return (
     <section
       id="timeline"
-      className="px-6 py-12 md:py-16 lg:px-32 lg:py-20 text-white"
+      className="scroll-mt-24 md:scroll-mt-28 px-6 py-12 md:py-16 lg:px-32 lg:py-20 text-white"
     >
       <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold md:m-2 lg:m-4">TIMELINE</h1>
       <div className="flex lg:mx-auto h-full" contentEditable={false}>

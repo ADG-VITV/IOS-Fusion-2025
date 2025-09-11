@@ -8,9 +8,9 @@ export default function Home() {
   const whatsappURL = `https://wa.me/${phoneNumber}`;
 
   return (
-    <div className="flex min-h-[100vh] bg-gradient-to-r from-indigo-950 to-black pt-16 md:pt-20">
+    <div className="flex min-h-screen bg-gradient-to-r from-indigo-950 to-black pt-16 md:pt-20">
       {/* Left Section */}
-      <div className="w-full lg:w-[60%] xl:w-[65%] justify-center">
+      <div className="relative w-full lg:w-[60%] xl:w-[65%] justify-center overflow-hidden">
         <Navbar />
         <div className="px-6 md:px-12 lg:px-16 xl:px-24 py-6 md:py-10 text-white max-w-6xl">
           <p className="text-4xl md:text-6xl font-bold my-4 text-[#5F2EEA] custom-font">
@@ -48,17 +48,19 @@ export default function Home() {
       </div>
 
       {/* Right Section (video instead of image) */}
-      <div className="hidden lg:flex w-[40%] min-h-full justify-center items-center">
-        <video
-          className="w-[80%] rounded-xl"
-          autoPlay
-          loop
-          muted
-          playsInline
-        >
-          <source src="/Swift.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+      <div className="hidden lg:flex w-[40%] min-h-full justify-center items-center px-6">
+        <div className="w-full max-w-[720px] aspect-video">
+          <video
+            className="w-full h-full rounded-xl object-contain"
+            autoPlay
+            loop
+            muted
+            playsInline
+          >
+            <source src="/Swift.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
       </div>
     </div>
   );
