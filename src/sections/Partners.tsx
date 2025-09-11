@@ -2,8 +2,8 @@ import Image from "next/image";
 
 export default function Partners() {
   return (
-    <section id="partners" className="px-8 md:px-16 lg:px-32 py-16 bg-gradient-to-r from-[#0f172a] via-[#1a1a1a] to-[#0f172a] text-white">
-      <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-12 text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">
+    <section id="partners" className="px-8 md:px-16 lg:px-32 py-16 bg-black text-white mt-5 pb-16 pt-16">
+      <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-12 text-center">
         PAST PARTNERS
       </h1>
       <div className="flex flex-wrap justify-center md:justify-around gap-10">

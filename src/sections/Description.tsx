@@ -2,7 +2,7 @@ export default function Description() {
     return (
     <section
         id="about"
-        className="lg:h-[100vh] flex flex-col justify-center items-center"
+        className="w-full bg-black py-16 md:py-24 lg:py-28 flex flex-col justify-center items-center"
     >
         <div className="flex flex-col items-center sm:hidden text-white m-6">
         <p className="text-3xl custom-font">
@@ -10,8 +10,8 @@ export default function Description() {
         </p>
         <p className="text-gray-400">CREATE.IDEATE.INNOVATE</p>
         </div>
-        <div className="w-[90%] m-4 mb-8 sm:m-8 sm:w-[75%] sm:h-[60%] 
-        text-white sm:p-16 text-center rounded-2xl 
+        <div className="w-[90%] m-4 mb-8 sm:m-8 sm:w-[75%] 
+        text-white sm:p-12 md:p-16 text-center rounded-2xl 
         bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl"
         >
         <div className="flex-col hidden sm:flex items-center">

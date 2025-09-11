@@ -1,7 +1,7 @@
 export default function Navbar() {
   return (
-    <nav className="fixed top-0 left-0 w-full bg-transparent z-50">
-      <div className="flex w-[60%] my-4 mx-auto custom-font justify-around text-white">
+    <nav className="fixed top-0 left-0 w-full bg-gray-500/10 backdrop-blur-md z-50">
+      <div className="flex max-w-6xl w-full px-6 md:px-8 lg:px-10 my-4 mx-auto custom-font justify-between md:justify-around text-white">
         <p className="relative group">
           <a href="#" className="inline-block">
             HOME
