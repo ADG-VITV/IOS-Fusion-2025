@@ -4,20 +4,22 @@ import Event from "@/components/Event"; // Assuming Event component is in this p
 import Slider from "@mui/material/Slider";
 
 // --- Event Data for Day 1 ---
+// --- Event Data for Day 1 ---
 const day1Events = [
-  { event: "INTRO & WORKSHOPS", time: "11:00 AM - 12:00 PM", venue: "Kickoff with iOS + ML workshops" },
-  { event: "HANDS ON WORKSHOP", time: "12:00 PM - 11:00 PM", venue: "Workshop begins, Speaker Session-2, Breaks" },
-  { event: "LUNCH AND NETWORKING", time: "1:30 PM - 2:30 PM", venue: "Food Court Area" },
-  { event: "SPEAKER SESSION", time: "2:30 PM - 4:00 PM", venue: "Guest Speaker Talk" },
+  { event: "OPENING & KICKOFF WORKSHOPS", time: "11:00 AM - 12:00 PM", venue: "Welcome note, icebreakers, and hands-on starter workshops with fun team games." },
+  { event: "KEYNOTE TALKS & INTERACTIVE Q&A", time: "12:00 PM - 1:30 PM", venue: "Experts share insights, spiced with audience polls and mini activities." },
+  { event: "TEAM FORMATION & BRAINSTORMING GAMES", time: "1:30 PM - 2:30 PM", venue: "Form teams, ideate solutions, and play quick creative thinking games." },
+  { event: "HACKATHON LAUNCH CHALLENGE", time: "2:30 PM - 4:00 PM", venue: "Coding marathon starts with surprise fun challenges to energize everyone." },
 ];
 
 // --- Event Data for Day 2 ---
 const day2Events = [
-  { event: "APPATHON BEGINS", time: "12:00 AM - 5:00 AM", venue: "Appathon, Reviews and Fun Games" },
-  { event: "MID-DAY CHECK-IN", time: "10:00 AM - 11:00 AM", venue: "Mentors Available" },
-  { event: "FINAL REVIEW", time: "1:00 PM - 2:00 PM", venue: "Project Demos" },
-  { event: "CLOSING & PRIZES", time: "2:00 PM - 3:00 PM", venue: "Ceremony and Awards" },
+  { event: "MENTORSHIP & ACTIVITY ROUNDS", time: "10:00 AM - 11:00 AM", venue: "Guided mentor sessions mixed with short games to refresh minds." },
+  { event: "MIDWAY CHECKPOINT & FUN BOOSTERS", time: "11:00 AM - 1:00 PM", venue: "Progress review combined with mini contests and relaxation activities." },
+  { event: "PROJECT DEMOS & INTERACTIVE SHOWCASE", time: "1:00 PM - 2:00 PM", venue: "Teams present work with live interactions and engaging activities." },
+  { event: "CLOSING CEREMONY & CELEBRATION", time: "2:00 PM - 3:00 PM", venue: "Final presentations, awards, and a wrap-up with fun highlights and games." },
 ];
+
 
 const totalEvents = day1Events.length + day2Events.length;
 

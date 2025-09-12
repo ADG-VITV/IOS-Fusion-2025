@@ -1,16 +1,17 @@
+"use-client;"
 import React from "react";
 import Navbar from "@/components/Navbar";
 import CountdownTimer from "@/components/Countdown";
 import ADG from "@/components/ADG";
 
 export default function Home() {
-  const phoneNumber = "917007299680";
+  const phoneNumber = "919704967744";
   const whatsappURL = `https://wa.me/${phoneNumber}`;
 
   return (
-    <div className="flex min-h-[100vh] bg-gradient-to-r from-indigo-950 to-black pt-16 md:pt-20">
+    <div className="flex min-h-screen bg-gradient-to-r from-indigo-950 to-black pt-16 md:pt-20">
       {/* Left Section */}
-      <div className="w-full lg:w-[60%] xl:w-[65%] justify-center">
+      <div className="relative w-full lg:w-[60%] xl:w-[65%] justify-center overflow-hidden">
         <Navbar />
         <div className="px-6 md:px-12 lg:px-16 xl:px-24 py-6 md:py-10 text-white max-w-6xl">
           <p className="text-4xl md:text-6xl font-bold my-4 text-[#5F2EEA] custom-font">
@@ -27,7 +28,7 @@ export default function Home() {
             <button className="w-[12rem] md:w-[14rem] text-lg md:text-2xl h-[3rem] md:h-[3.5rem] shadow-md bg-[#5F2EEA] border-0 rounded-full z-10">
               <a
                 target="_blank"
-                href="https://gravitas.vit.ac.in/events/af543ff7-0bd3-476f-ad5d-e37805869d2c"
+                href="https://gravitas.vit.ac.in/events/533637cb-ee55-4564-a10d-21edbd9c0c17"
               >
                 REGISTER
               </a>
@@ -47,17 +48,20 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="hidden lg:flex w-[40%] min-h-full justify-center items-center">
-        <video
-          className="w-[80%] rounded-xl"
-          autoPlay
-          loop
-          muted
-          playsInline
-        >
-          <source src="/Swift.mp4" type="video/mp4" />
-          Your browser does not support the video tags.
-        </video>
+      {/* Right Section (video instead of image) */}
+      <div className="hidden lg:flex w-[40%] min-h-full justify-center items-center px-6">
+        <div className="w-full max-w-[720px] aspect-video">
+          <video
+            className="w-full h-full rounded-xl object-contain"
+            autoPlay
+            loop
+            muted
+            playsInline
+          >
+            <source src="/Swift.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
       </div>
     </div>
   );

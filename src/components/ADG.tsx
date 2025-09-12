@@ -11,12 +11,12 @@ export default function ScrollImage() {
 
   return (
     <motion.div
-      className="absolute left-0 bottom-0 m-0 p-0 h-[16.5rem]"
+      className="absolute left-0 bottom-0 md:bottom-2 m-0 p-0 h-[8rem] sm:h-[10rem] md:h-[11rem] lg:h-[13rem] xl:h-[16.5rem] z-0 pointer-events-none select-none md:opacity-90"
       style={{ opacity, x }}
       transition={{ duration: 1, ease: "easeOut" }} // Adjust the duration and easing as needed
     >
       <Image
-        className="object-cover w-full h-full"
+        className="object-contain w-auto h-full"
         src="/ADG.png"
         alt="ADG"
         width={500}
