@@ -19,14 +19,14 @@ export default function Description() {
                 <p className="text-gray-400">SUSTAINABLE TOMORROW, SHAPED TODAY!</p>
             </div>
             <p className="m-4 text-gray-300 text-justify sm:text-center">
-                IOS Fusion 7.0, the flagship event of Advanced Developer Group (ADG), is
+                IOS Fusion 8.0, the flagship event of Advanced Developer Group (ADG), is
                 an unmissable opportunity for aspiring app developers to shine. Held
                 during Gravitas, VIT's premier Technical Fest, this two-day event is
                 designed to captivate and challenge participants as they dive into the
-                world of iOS development.
+                world of iOS development and Machine Learning.
             </p>
             <p className="m-4 text-gray-300 text-justify sm:text-center">
-                Join IOS Fusion 7.0 for a hands-on Swift workshop where you'll learn app
+                Join IOS Fusion 8.0 for a hands-on Swift and Machine Learning workshop where you'll learn app
                 development from expert mentors. Put your new skills to the test in an
                 Appathon, racing to create innovative iOS apps. This event combines
                 learning, creativity, and competition, offering a perfect start to your
