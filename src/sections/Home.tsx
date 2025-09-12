@@ -47,7 +47,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Right Section (video instead of image) */}
       <div className="hidden lg:flex w-[40%] min-h-full justify-center items-center">
         <video
           className="w-[80%] rounded-xl"
@@ -57,7 +56,7 @@ export default function Home() {
           playsInline
         >
           <source src="/Swift.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
+          Your browser does not support the video tags.
         </video>
       </div>
     </div>
