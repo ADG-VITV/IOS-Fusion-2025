@@ -58,9 +58,9 @@ export default function NavbarMobile() {
           <a href="#about" className="p-2" onClick={handleLinkClick}>
             ABOUT
           </a>
-          <a href="#speakers" className="p-2" onClick={handleLinkClick}>
+          {/* <a href="#speakers" className="p-2" onClick={handleLinkClick}>
             SPEAKERS
-          </a>
+          </a> */}
           <a href="#timeline" className="p-2" onClick={handleLinkClick}>
             TIMELINE
           </a>
