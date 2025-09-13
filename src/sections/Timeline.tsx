@@ -1,108 +1,111 @@
 "use client";
-import { useState, useRef, useEffect } from "react";
-import Event from "@/components/Event";
+import { useState } from "react";
+import Event from "@/components/Event"; // Assuming Event component is in this path
 import Slider from "@mui/material/Slider";
+
+// --- Event Data for Day 1 ---
+// --- Event Data for Day 1 ---
+const day1Events = [
+  { event: "OPENING & KICKOFF WORKSHOPS", time: "11:00 AM - 12:00 PM", venue: "Welcome note, icebreakers, and hands-on starter workshops with fun team games." },
+  { event: "KEYNOTE TALKS & INTERACTIVE Q&A", time: "12:00 PM - 1:30 PM", venue: "Experts share insights, spiced with audience polls and mini activities." },
+  { event: "TEAM FORMATION & BRAINSTORMING GAMES", time: "1:30 PM - 2:30 PM", venue: "Form teams, ideate solutions, and play quick creative thinking games." },
+  { event: "HACKATHON LAUNCH CHALLENGE", time: "2:30 PM - 4:00 PM", venue: "Coding marathon starts with surprise fun challenges to energize everyone." },
+];
+
+// --- Event Data for Day 2 ---
+const day2Events = [
+  { event: "MENTORSHIP & ACTIVITY ROUNDS", time: "10:00 AM - 11:00 AM", venue: "Guided mentor sessions mixed with short games to refresh minds." },
+  { event: "MIDWAY CHECKPOINT & FUN BOOSTERS", time: "11:00 AM - 1:00 PM", venue: "Progress review combined with mini contests and relaxation activities." },
+  { event: "PROJECT DEMOS & INTERACTIVE SHOWCASE", time: "1:00 PM - 2:00 PM", venue: "Teams present work with live interactions and engaging activities." },
+  { event: "CLOSING CEREMONY & CELEBRATION", time: "2:00 PM - 3:00 PM", venue: "Final presentations, awards, and a wrap-up with fun highlights and games." },
+];
+
+
+const totalEvents = day1Events.length + day2Events.length;
 
 export default function Timeline() {
   const [range, setRange] = useState<number>(100);
+  const segmentSize = 100 / (totalEvents - 1);
 
   const getBackgroundColor = (index: number): string => {
-
-    if (range < 33.33 && index === 3) return "bg-[#5C4AC8]";
-    if (range >= 33.33 && range < 66.66 && index === 2) return "bg-[#5C4AC8]";
-    if (range >= 66.66 && range <= 99.99 && index === 1) return "bg-[#5C4AC8]";
-    if (range == 100 && index === 0) return "bg-[#5C4AC8]";
+    const idealIndex = Math.round((100 - range) / segmentSize);
+    if (index === idealIndex) {
+      return "bg-[#5C4AC8]";
+    }
     return "bg-[#1A1A1A]";
   };
 
   const handleRangeChange = (event: Event, newValue: number | number[]) => {
     setRange(Array.isArray(newValue) ? newValue[0] : newValue);
   };
+
   const handleClick = (index: number) => {
-    switch (index) {
-      case 0:
-        setRange(0);
-        break;
-      case 1:
-        setRange(33.33);
-        break;
-      case 2:
-        setRange(66.66);
-        break;
-      case 3:
-        setRange(100);
-        break;
-      default:
-        break;
-    }
+    setRange(100 - index * segmentSize);
   };
 
   return (
-    <section
-      id="timeline"
-      className="scroll-mt-24 md:scroll-mt-28 px-6 py-12 md:py-16 lg:px-32 lg:py-20 text-white"
-    >
-      <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold md:m-2 lg:m-4">TIMELINE</h1>
-      <div className="flex lg:mx-auto h-full" contentEditable={false}>
-        <div className="flex flex-col w-full text-xl md:text-2xl lg:text-5xl gap-8 my-8 md:my-12 items-center font-bold relative">
-          <div className="flex w-full justify-between md:justify-evenly gap-6">
-            <h1>DAY 1</h1>
-            <div className="flex flex-col gap-4 mb-5 max-w-full">
-              <Event
-                key={0}
-                onClick={() => handleClick(3)}
-                className={`flex flex-col ${getBackgroundColor(0)}`}
-                event="INTRODUCTION AND SPEAKER SESSION"
-                time="11:00 AM - 12:00 PM"
-                venue="SMV - 209"
-              />  
-              <Event
-                key={1}
-                onClick={() => handleClick(2)}
-                className={`flex flex-col ${getBackgroundColor(1)}`}
-                event="HANDS ON WORKSHOP"
-                time="12:00 PM - 11:00 PM"
-                venue="Workshop begins, Speaker Session-2, Breaks"
-              />
-               
-            </div>
+    <section id="timeline" className="px-6 py-12 md:py-16 lg:px-32 lg: text-white h-screen">
+      <h1 className="mt-8 text-3xl text-center md:text-4xl lg:text-5xl font-bold mb-16">
+        TIMELINE
+      </h1>
+      <div className="relative flex flex-col md:flex-row mt-35 md:space-x-8 lg:space-x-16">
+        {/* Vertical Slider - Placed here to span both columns */}
+        <div className="absolute h-full hidden md:flex items-center left-1/2 -translate-x-1/2 top-0 z-20">
+            <Slider
+              value={range}
+              onChange={handleRangeChange}
+              aria-labelledby="range-slider"
+              min={0}
+              max={100}
+              track="inverted"
+              orientation="vertical"
+              sx={{
+                height: "95%", // A bit less than 100% to avoid overflow
+                color: "#5f37b0",
+                width: 8,
+                '& .MuiSlider-rail': { opacity: 0.5 },
+              }}
+            />
+        </div>
+
+        {/* DAY 1 COLUMN */}
+        <div className="w-full md:w-1/2">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-8">DAY 1</h2>
+          <div className="relative">
+            <div className="absolute left-1/2 -translate-x-1/2 top-0 h-full w-0.5 bg-[#5f37b0] z-0"></div>
+            {day1Events.map((item, index) => (
+              <div key={`day1-${index}`} className="flex justify-center items-center mb-8 relative">
+                <div className="w-1/2 px-4 flex justify-end">
+                  {index % 2 === 0 && ( <Event onClick={() => handleClick(index)} className={`w-full md:w-5/6 lg:w-3/4 ${getBackgroundColor(index)}`} {...item} /> )}
+                </div>
+                <div className="w-12 flex-shrink-0"></div>
+                <div className="w-1/2 px-4 flex justify-start">
+                  {index % 2 !== 0 && ( <Event onClick={() => handleClick(index)} className={`w-full md:w-5/6 lg:w-3/4 ${getBackgroundColor(index)}`} {...item} /> )}
+                </div>
+              </div>
+            ))}
           </div>
-          <div className="flex w-full justify-between md:justify-evenly gap-6">
-            <h1>DAY 2</h1>
-            <div className="flex flex-col gap-4 mb-5 max-w-full">
-              <Event
-                key={2}
-                onClick={() => handleClick(1)}
-                className={`flex flex-col ${getBackgroundColor(2)}`}
-                event="APPATHON"
-                time="12:00 AM - 5:00 AM"  
-                venue=" Appathon, Reviews and Fun Games"
-              />
-              <Event
-                key={3}
-                onClick={() => handleClick(0)}
-                className={`flex flex-col ${getBackgroundColor(3)}`}
-                event="FINAL REVIEW AND CLOSING CEREMONY"
-                time=" 9:30AM - 2:00 PM"
-                venue="MGB 303, 304"
-              />
-            </div>
-            <div className="hidden md:flex h-full justify-center items-center absolute top-0 left-[25%] lg:left-[35%] rotate-0">
-              <Slider
-                value={range}
-                onChange={handleRangeChange}
-                aria-labelledby="range-slider"
-                min={0}
-                max={100}
-                track="inverted"
-                orientation="vertical"
-                sx={{
-                  width: 8,
-                  height: "100%",
-                  color: "#5f37b0",
-                }}
-              />
-            </div>
+        </div>
+
+        {/* DAY 2 COLUMN */}
+        <div className="w-full md:w-1/2 mt-12 md:mt-0">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-8">DAY 2</h2>
+          <div className="relative">
+            <div className="absolute left-1/2 -translate-x-1/2 top-0 h-full w-0.5 bg-[#5f37b0] z-0"></div>
+            {day2Events.map((item, index) => {
+              const globalIndex = index + day1Events.length; // Continue index from Day 1
+              return (
+                <div key={`day2-${index}`} className="flex justify-center items-center mb-8 relative">
+                  <div className="w-1/2 px-4 flex justify-end">
+                    {globalIndex % 2 === 0 && ( <Event onClick={() => handleClick(globalIndex)} className={`w-full md:w-5/6 lg:w-3/4 ${getBackgroundColor(globalIndex)}`} {...item} /> )}
+                  </div>
+                  <div className="w-12 flex-shrink-0"></div>
+                  <div className="w-1/2 px-4 flex justify-start">
+                    {globalIndex % 2 !== 0 && ( <Event onClick={() => handleClick(globalIndex)} className={`w-full md:w-5/6 lg:w-3/4 ${getBackgroundColor(globalIndex)}`} {...item} /> )}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
