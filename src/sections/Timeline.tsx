@@ -50,7 +50,7 @@ export default function Timeline() {
       </h1>
       <div className="relative flex flex-col md:flex-row mt-35 md:space-x-8 lg:space-x-16">
         {/* Vertical Slider - Placed here to span both columns */}
-        <div className="absolute h-full hidden md:flex items-center left-1/2 -translate-x-1/2 top-0 z-20">
+        <div className="absolute h-full flex items-center left-[10%] sm:left-[15%] md:left-1/2 md:-translate-x-1/2 top-0 z-20">
             <Slider
               value={range}
               onChange={handleRangeChange}
@@ -62,7 +62,13 @@ export default function Timeline() {
               sx={{
                 height: "95%", // A bit less than 100% to avoid overflow
                 color: "#5f37b0",
-                width: 8,
+                width: 4,
+                "@media (min-width: 640px)": {
+                  width: 5,
+                },
+                "@media (min-width: 768px)": {
+                  width: 8,
+                },
                 '& .MuiSlider-rail': { opacity: 0.5 },
               }}
             />

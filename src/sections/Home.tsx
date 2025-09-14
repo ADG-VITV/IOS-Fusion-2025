@@ -1,5 +1,5 @@
-"use-client;"
-import React from "react";
+"use client";
+import React, { useRef, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import CountdownTimer from "@/components/Countdown";
 import ADG from "@/components/ADG";
@@ -7,11 +7,53 @@ import ADG from "@/components/ADG";
 export default function Home() {
   const phoneNumber = "919704967744";
   const whatsappURL = `https://wa.me/${phoneNumber}`;
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const isReversing = useRef(false);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Disable default loop behavior
+    video.loop = false;
+    
+    let animationId: number;
+
+    const animateReverse = () => {
+      if (video.currentTime > 0) {
+        video.currentTime -= 0.016; // ~60fps reverse animation
+        animationId = requestAnimationFrame(animateReverse);
+      } else {
+        // Reverse finished, start forward again
+        isReversing.current = false;
+        video.currentTime = 0;
+        video.play();
+      }
+    };
+
+    const handleEnded = () => {
+      if (!isReversing.current) {
+        // Start playing in reverse
+        isReversing.current = true;
+        video.pause();
+        animateReverse();
+      }
+    };
+
+    video.addEventListener('ended', handleEnded);
+
+    return () => {
+      video.removeEventListener('ended', handleEnded);
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+      }
+    };
+  }, []);
 
   return (
-    <div className="flex min-h-screen bg-gradient-to-r from-indigo-950 to-black pt-16 md:pt-20">
+    <div className="flex flex-col md:flex-row min-h-screen bg-gradient-to-r from-indigo-950 to-black pt-16 md:pt-20">
       {/* Left Section */}
-      <div className="relative w-full lg:w-[60%] xl:w-[65%] justify-center overflow-hidden">
+      <div className="relative w-full md:w-[60%] lg:w-[60%] xl:w-[65%] justify-center overflow-hidden">
         <Navbar />
         <div className="px-6 md:px-12 lg:px-16 xl:px-24 py-6 md:py-10 text-white max-w-6xl">
           <p className="text-4xl md:text-6xl font-bold my-4 text-[#5F2EEA] custom-font">
@@ -49,12 +91,12 @@ export default function Home() {
       </div>
 
       {/* Right Section (video instead of image) */}
-      <div className="hidden lg:flex w-[40%] min-h-full justify-center items-center px-6">
+      <div className="hidden md:flex w-[40%] min-h-full justify-center items-center px-6">
         <div className="w-full max-w-[720px] aspect-video">
           <video
+            ref={videoRef}
             className="w-full h-full rounded-xl object-contain"
             autoPlay
-            loop
             muted
             playsInline
           >
