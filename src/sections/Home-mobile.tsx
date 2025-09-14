@@ -7,7 +7,7 @@ export default function Home() {
   const whatsappURL = `https://wa.me/${phoneNumber}`;
   return (
     <>
-      <main className="bg-black min-h-screen">
+      <main className="bg-gradient-to-r from-indigo-950 to-black min-h-screen">
         <div className="p-4 h-full">
           <nav className="flex justify-between">
             <Image
