@@ -53,7 +53,7 @@ export default function Home() {
   return (
     <div className="flex flex-col md:flex-row min-h-screen bg-gradient-to-r from-indigo-950 to-black pt-16 md:pt-20">
       {/* Left Section */}
-      <div className="relative w-full md:w-[60%] lg:w-[60%] xl:w-[65%] justify-center overflow-hidden">
+      <div className="w-full md:w-[60%] lg:w-[60%] xl:w-[65%] justify-center overflow-hidden">
         <Navbar />
         <div className="px-6 md:px-12 lg:px-16 xl:px-24 py-6 md:py-10 text-white max-w-6xl">
           <p className="text-4xl md:text-6xl font-bold my-4 text-[#5F2EEA] custom-font">
@@ -66,7 +66,7 @@ export default function Home() {
             limits of iOS technology and unlocking a world of possibilities.
           </p>
 
-          <div className="flex flex-wrap gap-4 my-8 mx-0 z-10">
+          <div className="flex flex-wrap gap-4 my-10 mx-0 z-10">
             <button className="w-[12rem] md:w-[14rem] text-lg md:text-2xl h-[3rem] md:h-[3.5rem] shadow-md bg-[#5F2EEA] border-0 rounded-full z-10">
               <a
                 target="_blank"
@@ -75,7 +75,7 @@ export default function Home() {
                 REGISTER
               </a>
             </button>
-            <button className="w-[12rem] md:w-[14rem] text-lg md:text-2xl h-[3rem] md:h-[3.5rem] shadow-md border rounded-full z-10">
+            <button className="w-[12rem] md:w-[14rem] text-lg md:text-2xl h-[3rem] md:h-[3.5rem] shadow-md border rounded-full">
               <a target="_blank" href={whatsappURL}>
                 REACH OUT
               </a>
@@ -84,14 +84,13 @@ export default function Home() {
 
           <ADG />
 
-          <div>
             <CountdownTimer targetDate="2025-09-26T10:00:00" />
-          </div>
+
         </div>
       </div>
 
       {/* Right Section (video instead of image) */}
-      <div className="hidden md:flex w-[40%] min-h-full justify-center items-center px-6">
+      <div className="relative hidden md:flex lg:flex w-[40%] lg:min-h-full justify-center items-center">
         <div className="w-full max-w-[720px] aspect-video">
           <video
             ref={videoRef}
