@@ -4,14 +4,14 @@ export default function Description() {
     return (
     <section
         id="about"
-        className="scroll-mt-24 md:scroll-mt-28 w-full bg-black py-16 md:py-24 lg:py-28 flex flex-col justify-center items-center"
+        className="scroll-mt-24 md:scroll-mt-28 w-full bg-[#1A1A1A] py-16 md:py-24 lg:py-28 flex flex-col justify-center items-center"
     >
         <ElectricBorder 
-            color="#6d28d9" 
+            color="#5F2EEA" 
             speed={2} 
             chaos={0.5} 
             thickness={3} 
-            className="w-[90%] m-4 mb-8 sm:m-8 sm:w-[75%]  text-white sm:p-12 md:p-16 text-center rounded-2xl bg-white/10 backdrop-blur-lg shadow-xl">
+            className="w-[90%] m-4 mb-8 sm:m-8 sm:w-[75%]  text-white sm:p-12 md:p-16 text-center rounded-2xl bg-[#1A1A1A] z-10 ">
             <div className="flex-col hidden sm:flex items-center pb-5">
                 <p className="sm:text-4xl custom-font">
                 <span className="text-[#5F2EEA]">iOS</span> FUSION

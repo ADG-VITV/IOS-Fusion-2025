@@ -3,57 +3,19 @@ import React, { useRef, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import CountdownTimer from "@/components/Countdown";
 import ADG from "@/components/ADG";
+import MacbookMedia from "@/components/MacbookMedia";
 
 export default function Home() {
   const phoneNumber = "919704967744";
   const whatsappURL = `https://wa.me/${phoneNumber}`;
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const isReversing = useRef(false);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    // Disable default loop behavior
-    video.loop = false;
-    
-    let animationId: number;
-
-    const animateReverse = () => {
-      if (video.currentTime > 0) {
-        video.currentTime -= 0.016; // ~60fps reverse animation
-        animationId = requestAnimationFrame(animateReverse);
-      } else {
-        // Reverse finished, start forward again
-        isReversing.current = false;
-        video.currentTime = 0;
-        video.play();
-      }
-    };
-
-    const handleEnded = () => {
-      if (!isReversing.current) {
-        // Start playing in reverse
-        isReversing.current = true;
-        video.pause();
-        animateReverse();
-      }
-    };
-
-    video.addEventListener('ended', handleEnded);
-
-    return () => {
-      video.removeEventListener('ended', handleEnded);
-      if (animationId) {
-        cancelAnimationFrame(animationId);
-      }
-    };
-  }, []);
+  // Removed reverse-play logic; video now handled inside MacbookMedia.
 
   return (
-    <div className="flex flex-col md:flex-row min-h-screen bg-gradient-to-r from-indigo-950 to-black pt-16 md:pt-20">
+    <div className="flex flex-col md:flex-row min-h-screen md:pt-20 bg-[#1A1A1A]">
+      
       {/* Left Section */}
       <div className="w-full md:w-[60%] lg:w-[60%] xl:w-[65%] justify-center overflow-hidden">
+        
         <Navbar />
         <div className="px-6 md:px-12 lg:px-16 xl:px-24 py-6 md:py-10 text-white max-w-6xl">
           <p className="text-4xl md:text-6xl font-bold my-4 text-[#5F2EEA] custom-font">
@@ -82,27 +44,21 @@ export default function Home() {
             </button>
           </div>
 
-          <ADG />
+          {/* <ADG /> */}
 
             <CountdownTimer targetDate="2025-09-26T10:00:00" />
 
         </div>
       </div>
 
-      {/* Right Section (video instead of image) */}
-      <div className="relative hidden md:flex lg:flex w-[40%] lg:min-h-full justify-center items-center">
-        <div className="w-full max-w-[720px] aspect-video">
-          <video
-            ref={videoRef}
-            className="w-full h-full rounded-xl object-contain"
-            autoPlay
-            muted
-            playsInline
-          >
-            <source src="/Swift.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        </div>
+      {/* Right Section: MacBook Scroll / Video */}
+      <div className="relative hidden md:flex w-[40%] lg:min-h-full justify-center items-start px-4 md:px-6 lg:px-8 -mt-20 pb-10">
+        <MacbookMedia
+          variant="scroll"
+          videoSrc="/Swift.mp4"
+          popOutOnScroll
+          title={<span className="text-white/80 text-lg font-medium">Fun fact: the Macbook you are seeing below is enirely made of CSS. Scroll for a surprise! </span>}
+        />
       </div>
     </div>
   );

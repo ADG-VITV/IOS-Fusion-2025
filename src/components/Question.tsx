@@ -16,42 +16,33 @@ export default function Question({ ques, ans }: QuestionProps) {
   const toggle = () => setIsOpen((prev) => !prev);
 
   useEffect(() => {
-    if (questionRef.current) {
-      setContentHeight(questionRef.current.clientHeight);
+    
+    if (contentRef.current) {
+      setContentHeight(contentRef.current.scrollHeight);
     }
-  }, [isOpen]);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (questionRef.current && !questionRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  }, [isOpen, ans]);
 
   return (
     <div
       ref={questionRef}
       
-      className={`border rounded-lg lg:w-[80%] w-[100%] transition-all duration-300 
+      className={`group border rounded-xl lg:w-[80%] w-full overflow-hidden transition-colors duration-300 
       ${isOpen 
-        ? "bg-[#5F2EEA]/20 border-[#5F2EEA] shadow-[0_0_20px_rgba(95,46,234,0.6)]" 
-        : "bg-[#111827] border-gray-600 hover:shadow-[0_0_15px_rgba(56,189,248,0.4)] hover:border-cyan-400"}`}
+        ? "bg-[#5F2EEA]/90 border-[#5F2EEA] shadow-[0_10px_30px_rgba(95,46,234,0.35)]" 
+        : "bg-[#1A1A1A]/80 border-white/10 hover:border-[#5F2EEA] hover:shadow-[0_6px_22px_rgba(95,46,234,0.28)]"}`}
     >
       <div
         onClick={toggle}
-        className="h-16 md:h-[3rem] items-center justify-between flex p-4 cursor-pointer"
+        className="h-16 md:h-[3rem] items-center justify-between flex p-4 cursor-pointer select-none"
       >
-        <p className={`text-[0.9rem] md:text-[1rem] ${isOpen ? "text-cyan-300" : "text-gray-200"}`}>
+        <p className={`text-[0.9rem] md:text-[1rem] ${isOpen ? "text-white" : "text-gray-200 group-hover:text-gray-100"}`}>
           {ques}
         </p>
         <p className="text-2xl">
           {isOpen ? (
-            <MdKeyboardArrowDown className="text-[#5F2EEA] transition-all duration-300" />
+            <MdKeyboardArrowDown className="text-white transition-colors duration-300" />
           ) : (
-            <MdKeyboardArrowRight className="text-gray-400 transition-all duration-300" />
+            <MdKeyboardArrowRight className="text-gray-400 group-hover:text-[#5F2EEA] transition-colors duration-300" />
           )}
         </p>
       </div>
@@ -59,12 +50,12 @@ export default function Question({ ques, ans }: QuestionProps) {
         ref={contentRef}
         style={{
           height: isOpen ? `${contentHeight}px` : "0px",
-          transition: "all 300ms cubic-bezier(0.3, 0, 0.2, 1)",
+          transition: "height 300ms cubic-bezier(0.3, 0, 0.2, 1)",
           overflow: "hidden",
         }}
       >
-        <hr className="mx-4 border-[#38bdf8]/40" />
-        <p className="mx-4 md:my-3 my-5 text-gray-300">{ans}</p>
+        <div className=" rounded mx-4  border-t-3 border-white/10 " ></div>
+        <p className="mx-4 md:my-3 my-5  border-white text-gray-300">{ans}</p>
       </div>
     </div>
   );
