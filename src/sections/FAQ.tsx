@@ -1,4 +1,3 @@
-import { MdKeyboardArrowRight, MdKeyboardArrowDown } from "react-icons/md";
 import Question from "@/components/Question";
 
 export default function FAQ() {

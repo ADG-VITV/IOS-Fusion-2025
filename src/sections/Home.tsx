@@ -1,8 +1,7 @@
 "use client";
-import React, { useRef, useEffect } from "react";
+import React from "react";
 import Navbar from "@/components/Navbar";
 import CountdownTimer from "@/components/Countdown";
-import ADG from "@/components/ADG";
 import MacbookMedia from "@/components/MacbookMedia";
 
 export default function Home() {

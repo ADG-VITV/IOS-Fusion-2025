@@ -13,7 +13,8 @@ export default function Event({ className, onClick, style, event, time, venue}: 
       onClick={onClick}
       className={`rounded-xl lg:w-[23rem] text-white px-3 py-2 lg:px-5 lg:py-3 font-bold ${className}`}
       style={{
-        transition: "background-color 0.3s ease-in-out", 
+        transition: "background-color 0.3s ease-in-out",
+        ...style,
       }}
     >
       <h1 className="text-sm sm:text-base">{event}</h1>

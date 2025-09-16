@@ -2,7 +2,6 @@ import React from "react";
 import LandingPage from "@/sections/Home";
 import LandingPageMobile from "@/sections/Home-mobile";
 import Description from "@/sections/Description";
-import Speakers from "@/sections/Speakers";
 import Timeline from "@/sections/Timeline";
 import Partners from "@/sections/Partners";
 import FAQ from "@/sections/FAQ";

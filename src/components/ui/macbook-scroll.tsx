@@ -1,5 +1,6 @@
 "use client";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { MotionValue, motion, useScroll, useTransform } from "motion/react";
 import { cn } from "@/lib/utils";
 import {
@@ -59,18 +60,21 @@ export const MacbookScroll = ({
 
   // When externally controlled we keep motion subtle and scale compact.
   // External mode: keep initial scale neutral to avoid "already popped" look; subtle growth late.
-  const scaleX = externalProgress
-    ? useTransform(progress, [0, 0.3], [1.0, isMobile ? 1.1 : 1.2])
-    : useTransform(progress, [0, 0.3], [1.2, isMobile ? 1 : 1.5]);
-  const scaleY = externalProgress
-    ? useTransform(progress, [0, 0.3], [0.6, isMobile ? 1.05 : 1.15])
-    : useTransform(progress, [0, 0.3], [0.6, isMobile ? 1 : 1.5]);
-  const translate = externalProgress
-    ? useTransform(progress, [0, 1], [0, 60])
-    : useTransform(progress, [0, 1], [0, 1500]);
-  const rotate = externalProgress
-    ? useTransform(progress, [0, 0.4, 1], [-28, -15, 0]) // stronger initial tilt for depth
-    : useTransform(progress, [0.1, 0.12, 0.3], [-28, -28, 0]);
+  // Unconditional motion values
+  const scaleXExternal = useTransform(progress, [0, 0.3], [1.0, isMobile ? 1.1 : 1.2]);
+  const scaleXInternal = useTransform(progress, [0, 0.3], [1.2, isMobile ? 1 : 1.5]);
+  const scaleYExternal = useTransform(progress, [0, 0.3], [0.6, isMobile ? 1.05 : 1.15]);
+  const scaleYInternal = useTransform(progress, [0, 0.3], [0.6, isMobile ? 1 : 1.5]);
+  const translateExternal = useTransform(progress, [0, 1], [0, 60]);
+  const translateInternal = useTransform(progress, [0, 1], [0, 1500]);
+  const rotateExternal = useTransform(progress, [0, 0.4, 1], [-28, -15, 0]);
+  const rotateInternal = useTransform(progress, [0.1, 0.12, 0.3], [-28, -28, 0]);
+
+  // Select based on mode
+  const scaleX = externalProgress ? scaleXExternal : scaleXInternal;
+  const scaleY = externalProgress ? scaleYExternal : scaleYInternal;
+  const translate = externalProgress ? translateExternal : translateInternal;
+  const rotate = externalProgress ? rotateExternal : rotateInternal;
   const textTransform = useTransform(progress, [0, 0.3], [0, 100]);
   const textOpacity = useTransform(progress, [0, 0.2], [1, 0]);
 
@@ -188,13 +192,16 @@ export const Lid = ({
           <div className="absolute inset-0 h-full w-full rounded-lg overflow-hidden">
             {screenContent}
           </div>
-        ) : (
-          <img
+        ) : src ? (
+          <Image
             src={src as string}
             alt="aceternity logo"
-            className="absolute inset-0 h-full w-full rounded-lg object-cover object-left-top"
+            fill
+            className="absolute inset-0 rounded-lg object-cover object-left-top"
+            sizes="(max-width: 768px) 100vw, 512px"
+            priority
           />
-        )}
+        ) : null}
       </motion.div>
     </div>
   );
