@@ -51,13 +51,7 @@ export default function Home() {
             </div>
           </div>
           <div className="flex flex-col justify-center items-center w-full space-y-8">
-            <Image
-              className="w-28 sm:w-32 opacity-70"
-              src="/ADG.png"
-              alt="ADG"
-              width={500}
-              height={500}
-            />
+            
             <div className="text-3xl w-full flex justify-center">
               <div className="whitespace-nowrap">
                 <CountdownTimer targetDate="2025-09-26T10:00:00" />

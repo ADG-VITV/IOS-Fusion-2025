@@ -52,7 +52,7 @@ export default function Home() {
       </div>
 
       {/* Right Section: MacBook Scroll / Video */}
-      <div className="relative hidden md:flex w-[40%] lg:min-h-full justify-center items-start px-4 md:px-6 lg:px-8 -mt-20 pb-10">
+      <div className="relative hidden md:flex md:w-[30%] w-[40%] lg:min-h-full justify-center items-start px-4 md:px-6 lg:px-8 -mt-20 pb-10">
         <MacbookMedia
           variant="scroll"
           videoSrc="/Swift.mp4"
