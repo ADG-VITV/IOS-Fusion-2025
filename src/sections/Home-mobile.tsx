@@ -1,6 +1,7 @@
 import CountdownTimer from "@/components/Countdown";
 import Image from "next/image";
 import Navbar from "@/components/Navbar-mobile";
+import ADGmobile from "@/components/ADG-mobile";
 
 export default function Home() {
   const phoneNumber = "917007299680";
@@ -31,7 +32,7 @@ export default function Home() {
               Experience the power to innovate like never before, pushing the
               limits of iOS technology and unlocking a world of possibilities.
             </p>
-            <div className="flex my-4 mx-0 z-10 text-xs">
+            <div className="flex my-10 mx-0 z-10 text-xs">
               <button className="w-[10rem] text-base h-[2rem] shadow-md bg-[#5F2EEA] border-0 rounded-full mr-4">
                 <a
                   target="_blank"
@@ -51,17 +52,11 @@ export default function Home() {
             </div>
           </div>
           <div className="flex flex-col justify-center items-center w-full mt-6">
-            <Image
-              className="w-28 sm:w-32 opacity-70"
-              src="/ADG.png"
-              alt="ADG"
-              width={500}
-              height={500}
-            />
-            <div className="mt-4 text-3xl">
+            <div className="mt-10 text-3xl">
               <CountdownTimer targetDate="2025-09-26T10:00:00" />
             </div>
           </div>
+          <ADGmobile />
         </div>
       </main>
     </>
