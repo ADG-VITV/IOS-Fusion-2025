@@ -6,6 +6,11 @@ export default function Description() {
         id="about"
         className="scroll-mt-24 md:scroll-mt-28 w-full bg-[#1A1A1A] py-16 md:py-24 lg:py-28 flex flex-col justify-center items-center"
     >
+        <h1 className="text-white sm:mt-4 sm:mb-5 md:mb-15 text-3xl text-center md:text-4xl lg:text-5xl font-bold lg:mb-20">
+        ABOUT
+              <div className="mx-auto mt-4 mb-10 h-1 w-24 rounded-full bg-gradient-to-r from-violet-500/70 to-fuchsia-400/70" />
+
+      </h1>
         <ElectricBorder 
             color="#5F2EEA" 
             speed={2} 
