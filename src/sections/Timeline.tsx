@@ -1,12 +1,12 @@
 "use client";
-import { useState, useEffect, useRef } from "react"; // Import useEffect and useRef
+import { useState, useEffect, useRef } from "react"; 
 import Event from "@/components/Event";
 import Slider from "@mui/material/Slider";
 
 // --- Custom Hook for Smooth Slider Animation ---
 const useSmoothSlider = (targetValue: number, speed: number = 0.1) => {
   const [currentValue, setCurrentValue] = useState(targetValue);
-  const animationFrameRef = useRef<number>();
+  const animationFrameRef = useRef<number | undefined>(undefined);
 
   useEffect(() => {
     const animate = () => {
@@ -62,7 +62,7 @@ export default function Timeline() {
   const [activeIndex, setActiveIndex] = useState(0);
   const segmentSize = 100 / (totalEvents - 1);
 
-  const handleSliderChange = (event: any, newValue: number | number[]) => {
+  const handleSliderChange = (_event: Event | React.SyntheticEvent, newValue: number | number[]) => {
     const rangeValue = Array.isArray(newValue) ? newValue[0] : newValue;
     const newIndex = Math.round((100 - rangeValue) / segmentSize);
     setActiveIndex(newIndex);
@@ -78,11 +78,13 @@ export default function Timeline() {
   const smoothSliderValue = useSmoothSlider(targetSliderValue);
 
   return (
-    <section id="timeline" className="px-6 py-12 md:py-16 lg:px-24 xl:px-32 text-white min-h-screen">
+    <section id="timeline" className="px-6 py-12 md:py-16 lg:px-24 xl:px-32 bg-[#1A1A1A] text-white min-h-screen">
       <h1 className="sm:mt-4 sm:mb-5 md:mb-15 text-3xl text-center md:text-4xl lg:text-5xl font-bold lg:mb-20">
         TIMELINE
-      </h1>
+              <div className="mx-auto mt-4 mb-10 h-1 w-24 rounded-full bg-gradient-to-r from-violet-500/70 to-fuchsia-400/70" />
 
+      </h1>
+      
       <div className="relative flex flex-col md:flex-row md:space-x-8 lg:space-x-16">
         <div className="absolute h-full hidden md:flex items-center left-1/2 -translate-x-1/2 top-0 z-20">
           <Slider
@@ -94,13 +96,14 @@ export default function Timeline() {
             track="inverted"
             orientation="vertical"
             sx={{
-              height: "95%",
-              color: "#5f37b0",
+              height: "90%",
+              color: "#5F2EEA" ,
               width: 8,
               '& .MuiSlider-thumb': {
                 transition: 'top 0.1s ease-out', // Smoothen dragging visuals
               },
-              '& .MuiSlider-rail': { opacity: 0.5 },
+              '& .MuiSlider-rail': {  border: 'none' },
+              '& .MuiSlider-track': { backgroundColor: '#3C2482', border: 'none' },
             }}
           />
         </div>
@@ -137,7 +140,7 @@ function DayColumn({ dayTitle, events, dayOffset, activeIndex, onEventClick }: D
   // This function now returns styling classes for both color and scale
   const getActiveStyles = (index: number): string => {
     return index === activeIndex 
-      ? "bg-[#5C4AC8] scale-100 md:scale-105" // Active cards are colored and slightly larger on desktop
+      ? "bg-[#5F2EEA] scale-100 md:scale-105" // Active cards are colored and slightly larger on desktop
       : "bg-[#1A1A1A] scale-100";
   };
   
@@ -145,18 +148,18 @@ function DayColumn({ dayTitle, events, dayOffset, activeIndex, onEventClick }: D
     <div className="w-full md:w-1/2 mt-12 md:mt-0">
       <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-8">{dayTitle}</h2>
       <div className="relative">
-        <div className="absolute left-0 md:left-1/2 md:-translate-x-1/2 top-0 h-full w-0.5 bg-[#5f37b0] z-0"></div>
+        <div className="absolute left-0 md:left-1/2 md:-translate-x-1/2 top-0 h-full w-0.5 bg-[#5F2EEA] z-0"></div>
         
         {events.map((item, index) => {
           const globalIndex = index + dayOffset;
           const cardWidthClasses = "md:w-11/12 lg:w-10/12 xl:w-5/6";
-          // Base classes for all cards, including the smooth transition effect
-          const baseCardClasses = "transform transition-all duration-600 ease-in-out";
+          const baseCardClasses = "transform transition-all duration-600 ease-in-out relative z-10";
+          const overlapClasses = index > 0 ? "md:-mt-12 lg:-mt-16" : "";
 
           return (
-            <div key={`${dayTitle}-${index}`} className="mb-8">
+            <div key={`${dayTitle}-${index}`} className={`mb-8 md:mb-10 ${overlapClasses}`}>
               <div className="md:hidden flex items-center">
-                <div className="w-4 h-4 rounded-full bg-[#5f37b0] z-10 flex-shrink-0"></div>
+                <div className="w-4 h-4 rounded-full bg-[#5F2EEA] z-10 flex-shrink-0"></div>
                 <div className="pl-6 w-full">
                    <Event
                       onClick={() => onEventClick(globalIndex)}
