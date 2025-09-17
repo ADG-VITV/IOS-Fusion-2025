@@ -4,7 +4,7 @@ import Navbar from "@/components/Navbar-mobile";
 import ADGmobile from "@/components/ADG-mobile";
 
 export default function Home() {
-  const phoneNumber = "917007299680";
+  const phoneNumber = "919704967744";
   const whatsappURL = `https://wa.me/${phoneNumber}`;
   return (
     <>
@@ -36,7 +36,7 @@ export default function Home() {
               <button className="w-[10rem] text-base h-[2.4rem] shadow-md bg-[#5F2EEA] border-0 rounded-full hover:brightness-110 transition"> 
                 <a
                   target="_blank"
-                  href="https://gravitas.vit.ac.in/events/af543ff7-0bd3-476f-ad5d-e37805869d2c"
+                  href="https://gravitas.vit.ac.in/events/533637cb-ee55-4564-a10d-21edbd9c0c17"
                 >
                   REGISTER
                 </a>
