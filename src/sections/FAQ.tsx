@@ -1,13 +1,14 @@
-import { MdKeyboardArrowRight, MdKeyboardArrowDown } from "react-icons/md";
 import Question from "@/components/Question";
 
 export default function FAQ() {
   return (
     <section
       id="faq"
-      className="scroll-mt-24 md:scroll-mt-28 text-white md:px-32 md:py-20 p-6 sm:p-10"
+      className="scroll-mt-24 md:scroll-mt-28 bg-[#1A1A1A] text-white md:px-32 md:py-20 p-6 sm:p-10"
     >
-      <h1 className="text-5xl font-bold m-4">FAQ</h1>
+      <h1 className="flex justify-center text-5xl font-bold ">FAQ</h1>
+            <div className="mx-auto mt-4 mb-10 h-1 w-24 rounded-full bg-gradient-to-r from-violet-500/70 to-fuchsia-400/70" />
+
       <div className="flex flex-col gap-4 sm:gap-8 m-4 ">
       {/* className="bg-gradient-to-r from-[#1e1b4b] to-black text-white md:px-32 md:py-20 p-6 sm:p-10"
       <h1 className="text-4xl sm:text-5xl font-bold m-8 text-center">

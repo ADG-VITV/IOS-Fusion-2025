@@ -1,17 +1,37 @@
 @import "tailwindcss";
 
+/* Mobile (default) solid background */
 :root {
-  --background: linear-gradient(to right, #1e1b4b, #000000); /* indigo-950 → black */
-  --foreground: #171717;
+  --background: #1A1A1A;
+}
+
+/* Apply gradient only from sm breakpoint (~640px) upward */
+@media (min-width: 640px) {
+  :root {
+    --background: linear-gradient(
+      to right,
+      #1e1b4b 0%,
+      #000000 65%,
+      #000000 100%
+    );
+  }
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: linear-gradient(to right, #1e1b4b, #000000);
-    --foreground: #ededed;
+    --background: #1A1A1A;
+  }
+  @media (min-width: 640px) {
+    :root {
+      --background: linear-gradient(
+        to right,
+        #1e1b4b 0%,
+        #000000 65%,
+        #000000 100%
+      );
+    }
   }
 }
-
 @font-face {
    font-family: "Monument Extended Ultralight";
     src: url("https://db.onlinewebfonts.com/t/9b310b2d91dfaf3b73ac6ea66c8351b2.eot");

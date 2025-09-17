@@ -8,32 +8,32 @@ export default function Home() {
   const whatsappURL = `https://wa.me/${phoneNumber}`;
   return (
     <>
-      <main className="bg-gradient-to-r from-indigo-950 to-black min-h-screen">
-        <div className="p-4 h-full">
-          <nav className="flex justify-between">
+      <main className="bg-[#1A1A1A]">
+        <div className="p-4 h-full flex flex-col items-center gap-10">
+          <nav className="flex justify-between w-full max-w-md">
             <Image
-              className="w-[6rem]"
+              className="w-[8rem]"
               src="/adglogo.png"
               width={500}
-              height={500}
+              height={800}
               alt="Landing page"
             />
             <Navbar />
           </nav>
-          <div className="mx-2 text-white">
-            <div className="flex gap-2 my-2">
-              <p className="text-3xl font-bold my-4 text-[#5F2EEA] custom-font">
+          <div className="mx-2 text-white flex flex-col items-center text-center max-w-md space-y-6">
+            <div className="flex gap-2 items-end justify-center">
+              <p className="text-3xl font-bold text-[#5F2EEA] custom-font leading-none">
                 iOS
               </p>
-              <p className="text-3xl font-bold my-4 custom-font">FUSION 8.0 </p>
+              <p className="text-3xl font-bold custom-font leading-none">FUSION 8.0 </p>
             </div>
-            <p className="text-base text-gray-400 sm:mt-8">
+            <p className="text-base text-gray-400">
               iOS Fusion 8.0: Where the future of app development unfolds.
               Experience the power to innovate like never before, pushing the
               limits of iOS technology and unlocking a world of possibilities.
             </p>
-            <div className="flex my-10 mx-0 z-10 text-xs">
-              <button className="w-[10rem] text-base h-[2rem] shadow-md bg-[#5F2EEA] border-0 rounded-full mr-4">
+            <div className="flex z-10 text-xs justify-center gap-4">
+              <button className="w-[10rem] text-base h-[2.4rem] shadow-md bg-[#5F2EEA] border-0 rounded-full hover:brightness-110 transition"> 
                 <a
                   target="_blank"
                   href="https://gravitas.vit.ac.in/events/af543ff7-0bd3-476f-ad5d-e37805869d2c"
@@ -41,7 +41,7 @@ export default function Home() {
                   REGISTER
                 </a>
               </button>
-              <button className="w-[10rem] text-base h-[2rem] shadow-md border rounded-full mr-4">
+              <button className="w-[10rem] text-base h-[2.4rem] shadow-md border rounded-full hover:border-[#5F2EEA] hover:text-[#5F2EEA] transition">
                 <a
                   target="_blank"
                   href={whatsappURL}
@@ -51,12 +51,14 @@ export default function Home() {
               </button>
             </div>
           </div>
-          <div className="flex flex-col justify-center items-center w-full mt-6">
-            <div className="mt-10 text-3xl">
-              <CountdownTimer targetDate="2025-09-26T10:00:00" />
+          <div className="flex flex-col justify-center items-center w-full space-y-8">
+            
+            <div className="text-3xl w-full flex justify-center">
+              <div className="whitespace-nowrap">
+                <CountdownTimer targetDate="2025-09-26T10:00:00" />
+              </div>
             </div>
           </div>
-          <ADGmobile />
         </div>
       </main>
     </>
