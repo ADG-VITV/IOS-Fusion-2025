@@ -51,3 +51,11 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.password-reveal-icon::-ms-reveal {
+  filter: invert(100%);
+}
+
+.password-reveal-icon::-webkit-password-reveal-button {
+  filter: invert(100%);
+}

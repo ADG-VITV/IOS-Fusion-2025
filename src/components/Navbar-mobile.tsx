@@ -70,6 +70,9 @@ export default function NavbarMobile() {
           <a href="#faq" className="p-2" onClick={handleLinkClick}>
             FAQ
           </a>
+          <a href="/login" className="p-2" onClick={handleLinkClick}>
+            LOGIN
+          </a>
         </div>
       </div>
     </div>

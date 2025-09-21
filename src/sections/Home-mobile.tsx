@@ -1,7 +1,6 @@
 import CountdownTimer from "@/components/Countdown";
 import Image from "next/image";
 import Navbar from "@/components/Navbar-mobile";
-import ADGmobile from "@/components/ADG-mobile";
 
 export default function Home() {
   const phoneNumber = "919704967744";
