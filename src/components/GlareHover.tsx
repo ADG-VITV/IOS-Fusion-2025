@@ -87,7 +87,7 @@ const GlareHover: React.FC<GlareHoverProps> = ({
 
   return (
     <div
-      className={`relative grid place-items-center overflow-hidden border cursor-pointer ${className}`}
+      className={`relative grid place-items-center overflow-hidden border cursor-pointer mx-10 ${className}`}
       style={{
         width,
         height,
