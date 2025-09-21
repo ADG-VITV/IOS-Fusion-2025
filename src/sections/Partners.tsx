@@ -16,7 +16,7 @@ export default function Partners() {
   return (
     <section
       id="partners"
-      className="scroll-mt-24 md:scroll-mt-28 px-8 md:px-16 lg:px-32 py-24 md:py-28 lg:py-32 bg-[#1A1A1A] text-white flex flex-col justify-center"
+      className="scroll-mt-24 md:scroll-mt-28 px-8 md:px-16 lg:px-32 py-24 md:py-28 lg:py-32 bg-[#1A1A1A] text-white min-h-[80vh] flex flex-col justify-center"
     >
       <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center tracking-wide">
         PAST PARTNERS
