@@ -49,6 +49,12 @@ export default function Navbar() {
             <span className="block h-0.5 bg-violet-500 max-w-0 group-hover:max-w-full transition-all duration-500"></span>
           </a>
         </p>
+        <p className="relative group">
+          <a href="/login" className="inline-block">
+            LOGIN
+            <span className="block h-0.5 bg-violet-500 max-w-0 group-hover:max-w-full transition-all duration-500"></span>
+          </a>
+        </p>
         </div>
       </div>
     </nav>

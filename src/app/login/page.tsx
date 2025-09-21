@@ -1,23 +1,40 @@
 "use client";
 import GlareHover from "@/components/GlareHover";
 import React, { useState } from "react";
+import { auth } from "@/lib/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [showPopup, setShowPopup] = useState(false);
+  const router = useRouter();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user && router.pathname === "/login") {
+        router.push("/");
+      }
+    });
+    return unsubscribe;
+  }, [router]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !password) {
       setError("Please enter both email and password");
       return;
     }
-    if (email === "test@example.com" && password === "password") {
-      alert("Login successful!");
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
       setError("");
-    } else {
-      setError("Invalid email or password");
+      setShowPopup(true);
+    } catch (error) {
+      console.log(error);
+      setError((error as Error).message);
     }
   };
 
@@ -80,6 +97,21 @@ const LoginPage = () => {
               </button>
             </div>
           </form>
+
+          {showPopup && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+              <div className="bg-white p-8 rounded-lg text-center">
+                <h2 className="text-2xl font-bold mb-4">Login Successful!</h2>
+                <p className="mb-4">Welcome back!</p>
+                <button
+                  onClick={() => setShowPopup(false)}
+                  className="px-4 py-2 bg-blue-500 text-white rounded"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </GlareHover>
     </div>
