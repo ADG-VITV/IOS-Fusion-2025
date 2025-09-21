@@ -7,7 +7,7 @@ export default function Navbar() {
         {/* ADG Logo */}
         <div className="flex items-center ">
           <Image
-            className="w-20 md:w-28 h-auto"
+            className="w-20 md:w-28 h-auto mr-1"
             src="/adglogo.png"
             width={112}
             height={112}
@@ -16,8 +16,6 @@ export default function Navbar() {
             quality={95}
           />
         </div>
-        
-        {/* Navigation Links */}
         <div className="flex space-x-6 md:space-x-8">
         <p className="relative group">
           <a href="#" className="inline-block">

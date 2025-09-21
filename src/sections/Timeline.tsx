@@ -11,7 +11,6 @@ const useSmoothSlider = (targetValue: number, speed: number = 0.1) => {
   useEffect(() => {
     const animate = () => {
       const difference = targetValue - currentValue;
-      // If the difference is negligible, stop the animation
       if (Math.abs(difference) < 0.01) {
         setCurrentValue(targetValue);
         if (animationFrameRef.current) {
