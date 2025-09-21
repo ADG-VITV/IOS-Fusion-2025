@@ -3,7 +3,7 @@ import GlareHover from "@/components/GlareHover";
 import React, { useState } from "react";
 import { auth } from "@/lib/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { useEffect } from "react";
 
 const LoginPage = () => {
@@ -12,15 +12,16 @@ const LoginPage = () => {
   const [error, setError] = useState("");
   const [showPopup, setShowPopup] = useState(false);
   const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user && router.pathname === "/login") {
+      if (user && pathname === "/login") {
         router.push("/");
       }
     });
     return unsubscribe;
-  }, [router]);
+  }, [router, pathname]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
