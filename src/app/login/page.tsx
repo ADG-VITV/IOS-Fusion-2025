@@ -15,13 +15,14 @@ const LoginPage = () => {
   const pathname = usePathname();
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user && pathname === "/login") {
-        router.push("/");
-      }
-    });
-    return unsubscribe;
-  }, [router, pathname]);
+  const unsubscribe = auth.onAuthStateChanged((user) => {
+    if (user && pathname === "/login") {
+      setShowPopup(true);
+    }
+  });
+  return unsubscribe;
+}, [pathname]);
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
