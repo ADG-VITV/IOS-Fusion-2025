@@ -10,7 +10,7 @@ export default function Home() {
   // Removed reverse-play logic; video now handled inside MacbookMedia.
 
   return (
-    <div className="flex flex-col md:flex-row min-h-screen md:pt-20 bg-[#1A1A1A]">
+    <div className="flex flex-col md:flex-row md:pt-20 bg-[#1A1A1A]">
       
       {/* Left Section */}
       <div className="w-full md:w-[60%] lg:w-[60%] xl:w-[65%] justify-center overflow-hidden">
