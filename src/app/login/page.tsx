@@ -5,6 +5,7 @@ import { auth } from "@/lib/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import NavBar from "../navbar/NavBar";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -23,6 +24,7 @@ const LoginPage = () => {
   }, [router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
+    console.log(process.env.NEXT_PUBLIC_FIREBASE_API_KEY);
     e.preventDefault();
     if (!email || !password) {
       setError("Please enter both email and password");
@@ -40,6 +42,7 @@ const LoginPage = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen" style={{ background: 'linear-gradient(to right, #1e1b4b 0%, #000000 65%, #000000 100%)' }}>
+      <NavBar />
       <GlareHover
         glareColor="#ffffff"
         glareOpacity={0.3}
