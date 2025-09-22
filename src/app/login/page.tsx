@@ -1,48 +1,49 @@
 "use client";
 import GlareHover from "@/components/GlareHover";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { auth } from "@/lib/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
-import NavBar from "../navbar/NavBar";
+import { useRouter, usePathname } from "next/navigation";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [showPopup, setShowPopup] = useState(false);
+  const [loading, setLoading] = useState(false); // 2. ADD loading state
   const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user && router.pathname === "/login") {
+      if (user && pathname === "/login") {
         router.push("/");
       }
     });
     return unsubscribe;
-  }, [router]);
+  }, [router, pathname]);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    console.log(process.env.NEXT_PUBLIC_FIREBASE_API_KEY);
     e.preventDefault();
     if (!email || !password) {
       setError("Please enter both email and password");
       return;
     }
+    setLoading(true); // Set loading to true
+    setError("");
+
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      setError("");
-      setShowPopup(true);
+      // 4. ON SUCCESS, redirect to the dashboard
+      router.push("/dashboard");
     } catch (error) {
       console.log(error);
-      setError((error as Error).message);
+      setError("Failed to sign in. Please check your credentials.");
+      setLoading(false); // Set loading to false on error
     }
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen" style={{ background: 'linear-gradient(to right, #1e1b4b 0%, #000000 65%, #000000 100%)' }}>
-      <NavBar />
       <GlareHover
         glareColor="#ffffff"
         glareOpacity={0.3}
@@ -55,10 +56,7 @@ const LoginPage = () => {
           <h1 className="text-3xl sm:text-4xl font-bold text-center text-[#a5b4fc] custom-font mb-10 sm:mb-15">Login</h1>
           <form className="space-y-4 sm:space-y-6" onSubmit={handleSubmit}>
             <div>
-              <label
-                htmlFor="email"
-                className="text-sm sm:text-md font-medium text-gray-300"
-              >
+              <label htmlFor="email" className="text-sm sm:text-md font-medium text-gray-300">
                 Email address
               </label>
               <input
@@ -73,10 +71,7 @@ const LoginPage = () => {
               />
             </div>
             <div>
-              <label
-                htmlFor="password"
-                className="text-sm sm:text-md font-medium text-gray-300"
-              >
+              <label htmlFor="password" className="text-sm sm:text-md font-medium text-gray-300">
                 Password
               </label>
               <input
@@ -94,27 +89,13 @@ const LoginPage = () => {
             <div className="mt-8 sm:mt-10">
               <button
                 type="submit"
-                className="w-full px-4 py-2 sm:py-3 text-base sm:text-lg font-medium text-white bg-[#4b5dff] border border-transparent rounded-md shadow-sm hover:bg-[#4338ca] focus:bg-[#312e91]"
+                disabled={loading} // Disable button when loading
+                className="w-full px-4 py-2 sm:py-3 text-base sm:text-lg font-medium text-white bg-[#4b5dff] border border-transparent rounded-md shadow-sm hover:bg-[#4338ca] focus:bg-[#312e91] disabled:bg-gray-500 disabled:cursor-not-allowed"
               >
-                Sign in
+                {loading ? "Signing in..." : "Sign in"}
               </button>
             </div>
           </form>
-
-          {showPopup && (
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-              <div className="bg-white p-8 rounded-lg text-center">
-                <h2 className="text-2xl font-bold mb-4">Login Successful!</h2>
-                <p className="mb-4">Welcome back!</p>
-                <button
-                  onClick={() => setShowPopup(false)}
-                  className="px-4 py-2 bg-blue-500 text-white rounded"
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          )}
         </div>
       </GlareHover>
     </div>
