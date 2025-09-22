@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import GlareHover from "@/components/GlareHover";
 import React, { useState, useEffect } from "react";
 import { auth } from "@/lib/firebase";
@@ -9,14 +9,14 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false); // 2. ADD loading state
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user && pathname === "/login") {
-        router.push("/");
+        router.push("/dashboard");
       }
     });
     return unsubscribe;
@@ -28,17 +28,16 @@ const LoginPage = () => {
       setError("Please enter both email and password");
       return;
     }
-    setLoading(true); // Set loading to true
+    setLoading(true);
     setError("");
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      // 4. ON SUCCESS, redirect to the dashboard
       router.push("/dashboard");
     } catch (error) {
       console.log(error);
       setError("Failed to sign in. Please check your credentials.");
-      setLoading(false); // Set loading to false on error
+      setLoading(false);
     }
   };
 

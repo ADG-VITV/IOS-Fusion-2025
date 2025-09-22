@@ -3,36 +3,35 @@
 import React, { useState } from 'react';
 import { useAuth } from '@/context/AuthContext';
 
-export default function CreateTeam() {
-    const [teamName, setTeamName] = useState('');
-    const [teamTagline, setTeamTagline] = useState('');
+export default function JoinTeam() {
+    const [teamId, setTeamId] = useState('');
     const { user } = useAuth();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!user) {
-            alert('You must be logged in to create a team.');
+            alert('You must be logged in to join a team.');
             return;
         }
 
-        if (!teamName || !teamTagline) {
-            alert('Please enter a team name and tagline.');
+        if (!teamId) {
+            alert('Please enter a team ID.');
             return;
         }
 
-        const response = await fetch('/api/create-team', {
+        const response = await fetch('/api/join-team', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ userId: user.uid, teamName, teamTagline }),
+            body: JSON.stringify({ userId: user.uid, teamId }),
         });
 
         if (response.ok) {
-            const { teamId } = await response.json();
-            alert(`Team created successfully! Your team ID is: ${teamId}`);
+            alert('Successfully joined team!');
         } else {
-            alert('Error creating team.');
+            const { error } = await response.json();
+            alert(`Error joining team: ${error}`);
         }
     };
 
@@ -41,13 +40,13 @@ export default function CreateTeam() {
 
     return (
         <section
-            id="create-team"
+            id="join-team"
             className="relative flex justify-center items-center overflow-hidden text-white md:px-32 py-20 p-6 sm:p-10 min-h-screen"
             style={{ background: 'linear-gradient(to right, #1e1b4b 0%, #000000 65%, #000000 100%)' }}
         >
             <div className="relative z-10 flex flex-col justify-center items-center w-full max-w-lg">
                 <div className="flex flex-col items-center mb-10">
-                    <h1 className="text-4xl sm:text-5xl font-bold custom-font text-center">Create Team</h1>
+                    <h1 className="text-4xl sm:text-5xl font-bold custom-font text-center">Join Team</h1>
                     <div className="mt-4 h-1 w-24 rounded-full bg-gradient-to-r from-violet-500/70 to-fuchsia-400/70" />
                 </div>
 
@@ -57,17 +56,9 @@ export default function CreateTeam() {
                 >
                     <input
                         type="text"
-                        placeholder="Team Name"
-                        value={teamName}
-                        onChange={(e) => setTeamName(e.target.value)}
-                        className={inputClass}
-                        style={{ "--tw-ring-color": "#5F2EEA" } as React.CSSProperties}
-                    />
-                    <input
-                        type="text"
-                        placeholder="Team Tagline"
-                        value={teamTagline}
-                        onChange={(e) => setTeamTagline(e.target.value)}
+                        placeholder="Enter Team ID"
+                        value={teamId}
+                        onChange={(e) => setTeamId(e.target.value)}
                         className={inputClass}
                         style={{ "--tw-ring-color": "#5F2EEA" } as React.CSSProperties}
                     />
@@ -76,7 +67,7 @@ export default function CreateTeam() {
                         type="submit"
                         className="bg-gradient-to-r from-violet-600 to-fuchsia-500 hover:opacity-90 px-8 py-3 rounded-lg font-semibold transition self-center mt-4"
                     >
-                        Create Team
+                        Join Team
                     </button>
                 </form>
             </div>

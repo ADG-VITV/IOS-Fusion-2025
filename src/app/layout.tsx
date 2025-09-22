@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Archivo } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "@/context/AuthContext";
+import NavBar from "./navbar/NavBar";
 
 const archivo = Archivo({
   subsets: ["latin"],
@@ -21,9 +22,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={archivo.className}>
-        <AuthProvider> {/* 2. Wrap your app with the provider */}
-          {children}
-        </AuthProvider>
+        <NavBar />
+        <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
   );
