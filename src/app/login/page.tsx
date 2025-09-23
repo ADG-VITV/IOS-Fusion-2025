@@ -42,7 +42,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen" style={{ background: 'linear-gradient(to right, #1e1b4b 0%, #000000 65%, #000000 100%)' }}>
+    <div className="flex bg-[#1A1A1A] items-center justify-center min-h-screen">
       <GlareHover
         glareColor="#ffffff"
         glareOpacity={0.3}
