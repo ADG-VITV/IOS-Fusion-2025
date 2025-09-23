@@ -26,7 +26,6 @@ export default function Home() {
             Experience the power to innovate like never before, pushing the
             limits of iOS technology and unlocking a world of possibilities.
           </p>
-
           <div className="flex flex-wrap gap-4 my-10 mx-0 z-10">
             <button className="w-[12rem] md:w-[14rem] text-lg md:text-2xl h-[3rem] md:h-[3.5rem] shadow-md bg-[#5F2EEA] border-0 rounded-full z-10">
               <a

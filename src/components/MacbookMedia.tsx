@@ -10,7 +10,7 @@ import { MacbookScroll } from "@/components/ui/macbook-scroll";
  *
  * Props:
  *  - variant: "scroll" | "static" (default: scroll)
- *  - videoSrc?: string (when provided, renders video instead of image)
+ *  - videoSrc?: string (when prov ided, renders video instead of image)
  *  - poster?: string fallback poster for video
  *  - title?: React.ReactNode (optional heading)
  *  - badge?: React.ReactNode (optional floating badge)
