@@ -118,38 +118,53 @@ export default function TeamPage() {
   }
 
   return (
-    <main className="min-h-screen bg-black text-white p-6 sm:p-12 pt-24">
-      <div className="max-w-3xl mx-auto bg-neutral-950 border border-white/[0.1] rounded-2xl shadow-2xl p-6 sm:p-10">
-        <h1 className="text-4xl font-bold mb-2">{team.teamName}</h1>
-        <p className="text-sm text-neutral-500 mb-6">Team ID: {teamId}</p>
+    <main className="min-h-screen bg-gradient-to-br from-black via-neutral-950 to-black text-white flex justify-center items-center p-6 sm:p-12 pt-24">
+      <div className="max-w-3xl w-full mx-auto bg-gradient-to-br from-neutral-900/80 to-neutral-950/80 backdrop-blur-xl border border-white/10 rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.6)] p-8 sm:p-12 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_8px_40px_rgba(0,0,0,0.8)]">
+        
+        <div className="mb-6 border-b border-white/10 pb-4 flex flex-col justify-center items-center">
+          <h1 className="text-4xl font-extrabold tracking-tight mb-2 bg-gradient-to-r from-indigo-500 to-blue-500 bg-clip-text text-transparent">
+            {team.teamName}
+          </h1>
+          <p className="text-sm text-neutral-500">Team ID: {teamId}</p>
+        </div>
 
-        <p className="text-lg text-neutral-400 mb-6">{team.teamTagline}</p>
-
-        <h2 className="text-2xl font-semibold mb-2">Members</h2>
-        <ul className="list-disc pl-5 text-neutral-300">
-          {memberNames.map((name, idx) => (
-            <li key={idx} className="mb-1">
-              {name}
-            </li>
-          ))}
-        </ul>
-
-        <p className="mt-6 text-sm text-neutral-500">
-          Created At:{" "}
-          {team.createdAt?.toDate
-            ? team.createdAt.toDate().toLocaleString()
-            : new Date(team.createdAt).toLocaleString()}
+        <p className="text-lg text-neutral-300 italic mb-8">
+          “{team.teamTagline}”
         </p>
 
-        {user && (
-          <button
-            onClick={handleLeaveTeam}
-            className="mt-8 bg-red-600 hover:bg-red-700 px-6 py-3 rounded-lg text-white font-semibold"
-          >
-            Leave Team
-          </button>
-        )}
+        <div className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4 text-indigo-400">Members</h2>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-neutral-300">
+            {memberNames.map((name, idx) => (
+              <li
+                key={idx}
+                className="px-3 py-2 bg-neutral-800/60 rounded-lg border border-white/5 hover:border-indigo-500/40 transition"
+              >
+                {name}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-t border-white/10 pt-4">
+          <p className="text-sm text-neutral-500">
+            Created At:{" "}
+            {team.createdAt?.toDate
+              ? team.createdAt.toDate().toLocaleString()
+              : new Date(team.createdAt).toLocaleString()}
+          </p>
+
+          {user && (
+            <button
+              onClick={handleLeaveTeam}
+              className="bg-red-600 hover:bg-red-700 px-6 py-3 rounded-xl text-white font-semibold shadow-md hover:shadow-red-900/40 transition"
+            >
+              Leave Team
+            </button>
+          )}
+        </div>
       </div>
     </main>
+
   );
 }
