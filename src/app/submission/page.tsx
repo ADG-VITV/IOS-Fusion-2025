@@ -20,7 +20,7 @@ export default function SubmissionPage() {
   const [description, setDescription] = useState("");
   const [fileLink, setFileLink] = useState("");
   const [team, setTeam] = useState<any | null>(null);
-  const [submission, setSubmission] = useState<any | null>(null); // 👈 store submission data
+  const [submission, setSubmission] = useState<any | null>(null); 
   const [ready, setReady] = useState(false);
 
   const router = useRouter();
