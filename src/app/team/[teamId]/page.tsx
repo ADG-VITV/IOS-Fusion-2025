@@ -5,6 +5,7 @@ import { db } from "@/lib/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { useParams, useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
+import GlassPopup from "@/components/PopUp";
 
 interface Team {
   teamName: string;
@@ -29,6 +30,13 @@ export default function TeamPage() {
   const [memberNames, setMemberNames] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
 
+  const [popupMessage, setPopupMessage] = useState("");
+  const [popupVisible, setPopupVisible] = useState(false);
+    
+  const showPopup = (message: string) => {
+      setPopupMessage(message);
+      setPopupVisible(true);
+  };
   useEffect(() => {
     const fetchTeam = async () => {
       if (!teamId) return;
@@ -89,15 +97,15 @@ export default function TeamPage() {
       });
 
       if (res.ok) {
-        alert("You left the team successfully.");
+        showPopup("You left the team successfully.");
         router.push("/dashboard");
       } else {
         const { error } = await res.json();
-        alert(`Error leaving team: ${error}`);
+        showPopup(`Error leaving team: ${error}`);
       }
     } catch (err) {
       console.error("Error leaving team:", err);
-      alert("Unexpected error.");
+      showPopup("Unexpected error.");
     }
   };
 
@@ -168,3 +176,4 @@ export default function TeamPage() {
 
   );
 }
+
