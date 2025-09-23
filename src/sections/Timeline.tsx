@@ -76,8 +76,8 @@ export default function Timeline() {
   const smoothSliderValue = useSmoothSlider(targetSliderValue);
 
   return (
-    <section id="timeline" className="px-6 py-12 md:py-16 lg:px-24 xl:px-32 text-white min-h-screen">
-      <h1 className="sm:mt-4 sm:mb-5 md:mb-15 text-3xl text-center md:text-4xl lg:text-5xl font-bold lg:mb-20">
+    <section id="timeline" className="px-6 lg:px-24 xl:px-32 text-white min-h-[80vh]  bg-[#1A1A1A]">
+      <h1 className="sm:mb-5 md:mb-15 text-3xl text-center md:text-4xl lg:text-5xl font-bold lg:mb-20">
         TIMELINE
       </h1>
 

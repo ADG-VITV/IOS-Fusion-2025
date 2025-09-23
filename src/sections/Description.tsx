@@ -4,7 +4,7 @@ export default function Description() {
     return (
     <section
         id="about"
-        className="w-full bg-[#1A1A1A] py-16 md:py-24 lg:py-28 flex flex-col justify-center items-center"
+        className="w-full bg-[#1A1A1A] flex flex-col justify-center items-center min-h-[120vh] -mt-50"
     >
         <h1 className="text-white sm:mt-4 sm:mb-5 md:mb-15 text-3xl text-center md:text-4xl lg:text-5xl font-bold lg:mb-20">
         ABOUT
