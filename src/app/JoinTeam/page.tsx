@@ -3,21 +3,30 @@
 import React, { useState } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
+import GlassPopup from "@/components/PopUp";
 
 export default function JoinTeam() {
   const [teamId, setTeamId] = useState("");
   const { user } = useAuth();
   const router = useRouter();
 
+  const [popupMessage, setPopupMessage] = useState("");
+  const [popupVisible, setPopupVisible] = useState(false);
+  
+  const showPopup = (message: string) => {
+    setPopupMessage(message);
+    setPopupVisible(true);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!user) {
-      alert("You must be logged in to join a team.");
+      showPopup("You must be logged in to join a team.");
       return;
     }
 
     if (!teamId.trim()) {
-      alert("Please enter a team ID.");
+      showPopup("Please enter a team ID.");
       return;
     }
 
@@ -33,14 +42,14 @@ export default function JoinTeam() {
       const data = await response.json();
 
       if (response.ok) {
-        alert("Successfully joined team!");
+        showPopup("Successfully joined team!");
         router.push("/dashboard"); // redirect to team page
       } else {
-        alert(`Error joining team: ${data.error}`);
+        showPopup(`Error joining team: ${data.error}`);
       }
     } catch (err:any) {
       console.error("Join team error:", err);
-      alert(`Unexpected error: ${err?.message || "check console"}`);
+      showPopup(`Unexpected error: ${err?.message || "check console"}`);
     }
   };
 
@@ -76,6 +85,9 @@ export default function JoinTeam() {
           </button>
         </form>
       </div>
+        {popupVisible && (
+      <GlassPopup message={popupMessage} onClose={() => setPopupVisible(false)} />
+    )}
     </section>
   );
 }

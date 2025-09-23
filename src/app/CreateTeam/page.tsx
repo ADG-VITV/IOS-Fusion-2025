@@ -3,22 +3,30 @@
 import React, { useState } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
+import GlassPopup from '@/components/PopUp';
 
 export default function CreateTeam() {
   const [teamName, setTeamName] = useState('');
   const [teamTagline, setTeamTagline] = useState('');
   const { user } = useAuth();
   const router = useRouter();
-
+  
+  const [popupMessage, setPopupMessage] = useState("");
+    const [popupVisible, setPopupVisible] = useState(false);
+    
+    const showPopup = (message: string) => {
+      setPopupMessage(message);
+      setPopupVisible(true);
+    };
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!user) {
-      alert('You must be logged in to create a team.');
+      showPopup('You must be logged in to create a team.');
       return;
     }
 
     if (!teamName || !teamTagline) {
-      alert('Please enter a team name and tagline.');
+      showPopup('Please enter a team name and tagline.');
       return;
     }
 
@@ -36,15 +44,15 @@ export default function CreateTeam() {
 
       if (response.ok) {
         const { teamId } = await response.json();
-        alert(`Team created successfully!`);
+        showPopup(`Team created successfully!`);
         router.push('/dashboard');
       } else {
         const { error } = await response.json();
-        alert(`Error creating team: ${error}`);
+        showPopup(`Error creating team: ${error}`);
       }
     } catch (err) {
       console.error('Error creating team:', err);
-      alert('Unexpected error occurred.');
+      showPopup('Unexpected error occurred.');
     }
   };
 
