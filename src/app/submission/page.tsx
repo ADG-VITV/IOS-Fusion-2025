@@ -1,5 +1,5 @@
 "use client";
-
+import { FiArrowLeft } from "react-icons/fi";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
@@ -20,7 +20,7 @@ export default function SubmissionPage() {
   const [description, setDescription] = useState("");
   const [fileLink, setFileLink] = useState("");
   const [team, setTeam] = useState<any | null>(null);
-  const [submission, setSubmission] = useState<any | null>(null); // 👈 store submission data
+  const [submission, setSubmission] = useState<any | null>(null);
   const [ready, setReady] = useState(false);
 
   const router = useRouter();
@@ -42,14 +42,16 @@ export default function SubmissionPage() {
               const teamData = { id: teamDoc.id, ...teamDoc.data() };
               setTeam(teamData);
 
-              // 🔎 Check if submission exists
               const q = query(
                 collection(db, "submissions"),
                 where("teamId", "==", teamId)
               );
               const snapshot = await getDocs(q);
               if (!snapshot.empty) {
-                setSubmission({ id: snapshot.docs[0].id, ...snapshot.docs[0].data() });
+                setSubmission({
+                  id: snapshot.docs[0].id,
+                  ...snapshot.docs[0].data(),
+                });
               }
             }
           }
@@ -110,7 +112,7 @@ export default function SubmissionPage() {
 
   if (submission) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-black text-white flex-col px-6">
+      <div className="flex items-center justify-center min-h-screen bg-[#1A1A1A] text-white flex-col px-6">
         <h2 className="text-2xl font-bold mb-4 text-green-400">
           Your team has already submitted an idea 🎉
         </h2>
@@ -137,48 +139,63 @@ export default function SubmissionPage() {
   }
 
   return (
-    <form
-      onSubmit={handleSubmitIdea}
-      className="flex flex-col gap-6 w-full max-w-lg mx-auto min-h-screen bg-black text-white pt-24 px-4"
-    >
-      <h2 className="text-3xl font-bold text-violet-500/70 text-center">
-        Submit Your Idea
-      </h2>
-      <h3 className="text-xl font-bold text-center">Team: {team.teamName}</h3>
+    <div className="min-h-screen bg-[#1A1A1A] text-white flex flex-col items-center pt-16 px-4">
+      {/* 🔙 Top Left Back Button */}
 
-      <input
-        type="text"
-        placeholder="Title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        required
-        className="px-4 py-3 rounded-md bg-neutral-800 border border-neutral-700"
-      />
 
-      <textarea
-        placeholder="Description"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-        required
-        rows={4}
-        className="px-4 py-3 rounded-md bg-neutral-800 border border-neutral-700"
-      />
-
-      <input
-        type="url"
-        placeholder="Paste file link"
-        value={fileLink}
-        onChange={(e) => setFileLink(e.target.value)}
-        required
-        className="px-4 py-3 rounded-md bg-neutral-800 border border-neutral-700"
-      />
-
-      <button
-        type="submit"
-        className="bg-violet-600 hover:bg-violet-700 px-6 py-3 rounded-lg text-white font-semibold"
+      <form
+        onSubmit={handleSubmitIdea}
+        className="flex flex-col gap-6 w-full max-w-lg bg-black p-8 rounded-md shadow-lg"
       >
-        Submit
-      </button>
-    </form>
+        <h2 className="text-3xl font-bold text-violet-500/70 text-center">
+          Submit Your Idea
+        </h2>
+        <h3 className="text-xl font-bold text-center">Team: {team.teamName}</h3>
+
+        <input
+          type="text"
+          placeholder="Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          required
+          className="px-4 py-3 rounded-md bg-neutral-800 border border-neutral-700"
+        />
+
+        <textarea
+          placeholder="Description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          required
+          rows={4}
+          className="px-4 py-3 rounded-md bg-neutral-800 border border-neutral-700"
+        />
+
+        <input
+          type="url"
+          placeholder="Paste file link"
+          value={fileLink}
+          onChange={(e) => setFileLink(e.target.value)}
+          required
+          className="px-4 py-3 rounded-md bg-neutral-800 border border-neutral-700"
+        />
+
+        <button
+          type="submit"
+          className="bg-violet-600 hover:bg-violet-700 px-6 py-3 rounded-lg text-white font-semibold"
+        >
+          Submit
+        </button>
+
+        {/* ⬅️ Back to Dashboard Button */}
+<button
+      type="button"
+      onClick={() => router.push("/dashboard")}
+      className="bg-neutral-700 hover:bg-neutral-600 px-6 py-3 rounded-full text-white font-semibold mt-5 mx-5 sm:mx-25  flex items-center justify-center"
+    >
+      <FiArrowLeft className="text-2xl mr-2" />
+      Back to Dashboard
+    </button>
+      </form>
+    </div>
   );
 }
