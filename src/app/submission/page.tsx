@@ -20,7 +20,7 @@ export default function SubmissionPage() {
   const [description, setDescription] = useState("");
   const [fileLink, setFileLink] = useState("");
   const [team, setTeam] = useState<any | null>(null);
-  const [submissionId, setSubmissionId] = useState<string | null>(null);
+  const [submission, setSubmission] = useState<any | null>(null); // 👈 store submission data
   const [ready, setReady] = useState(false);
 
   const router = useRouter();
@@ -42,22 +42,23 @@ export default function SubmissionPage() {
               const teamData = { id: teamDoc.id, ...teamDoc.data() };
               setTeam(teamData);
 
+              // 🔎 Check if submission exists
               const q = query(
                 collection(db, "submissions"),
                 where("teamId", "==", teamId)
               );
               const snapshot = await getDocs(q);
               if (!snapshot.empty) {
-                setSubmissionId(snapshot.docs[0].id);
+                setSubmission({ id: snapshot.docs[0].id, ...snapshot.docs[0].data() });
               }
             }
           }
         }
-        setReady(true); 
+        setReady(true);
       };
       fetchData();
     } else if (!loading && !user) {
-      setReady(true); 
+      setReady(true);
     }
   }, [user, loading]);
 
@@ -73,7 +74,14 @@ export default function SubmissionPage() {
       createdBy: user.uid,
       createdAt: serverTimestamp(),
     });
-    setSubmissionId(docRef.id);
+
+    setSubmission({
+      id: docRef.id,
+      teamId: team.id,
+      title,
+      description,
+      fileLink,
+    });
   };
 
   if (loading || !ready) {
@@ -100,17 +108,29 @@ export default function SubmissionPage() {
     );
   }
 
-  if (submissionId) {
+  if (submission) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-black text-white flex-col">
+      <div className="flex items-center justify-center min-h-screen bg-black text-white flex-col px-6">
         <h2 className="text-2xl font-bold mb-4 text-green-400">
-          Idea submitted successfully!
+          Your team has already submitted an idea 🎉
         </h2>
+        <div className="bg-neutral-900 p-6 rounded-xl shadow-lg w-full max-w-lg text-left">
+          <h3 className="text-xl font-bold mb-2">{submission.title}</h3>
+          <p className="text-neutral-300 mb-4">{submission.description}</p>
+          <a
+            href={submission.fileLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-violet-400 underline"
+          >
+            View Attached File
+          </a>
+        </div>
         <button
           onClick={() => router.push("/dashboard")}
-          className="bg-violet-600 hover:bg-violet-700 px-6 py-3 rounded-lg text-white font-semibold"
+          className="mt-6 bg-violet-600 hover:bg-violet-700 px-6 py-3 rounded-lg text-white font-semibold"
         >
-          Go Back
+          Back to Dashboard
         </button>
       </div>
     );
