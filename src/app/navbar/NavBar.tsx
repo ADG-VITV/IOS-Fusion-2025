@@ -16,7 +16,17 @@ export default function NavBar() {
             quality={95}
           />
         </div>
-        <p className="text-xl md:text-2xl custom-font">iOS Fusion 8.0</p>
+        <div className="flex items-center ">
+          <Image
+            className="w-20 md:w-28 h-auto"
+            src="/logo.png"
+            width={112}
+            height={112}
+            alt="ADG Logo"
+            priority
+            quality={95}
+          />
+        </div>
       </div>
     </nav>
   );

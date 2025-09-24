@@ -139,15 +139,14 @@ export default function SubmissionPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#1A1A1A] text-white flex flex-col items-center pt-16 px-4">
+    <div className="min-h-screen bg-[#1A1A1A] text-white flex flex-col justify-center items-center pt-16 px-4">
       {/* 🔙 Top Left Back Button */}
-
 
       <form
         onSubmit={handleSubmitIdea}
-        className="flex flex-col gap-6 w-full max-w-lg bg-black p-8 rounded-md shadow-lg"
+        className="max-w-2xl w-full mx-auto flex flex-col gap-5 bg-gradient-to-br from-neutral-900/80 to-neutral-950/80 backdrop-blur-xl border border-white/10 rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.6)] p-8 sm:p-12 transition-all duration-300 hover:bg-neutral-900 transform hover:scale-105 hover:shadow-[0_0_2rem_#1a0a3b]"
       >
-        <h2 className="text-3xl font-bold text-violet-500/70 text-center">
+        <h2 className="text-3xl font-bold text-violet-500/70 text-center custom-font">
           Submit Your Idea
         </h2>
         <h3 className="text-xl font-bold text-center">Team: {team.teamName}</h3>
@@ -181,7 +180,7 @@ export default function SubmissionPage() {
 
         <button
           type="submit"
-          className="bg-violet-600 hover:bg-violet-700 px-6 py-3 rounded-lg text-white font-semibold"
+          className="bg-violet-600 hover:bg-violet-700 px-6 py-3 rounded-lg text-white font-semibold mt-2"
         >
           Submit
         </button>
@@ -190,9 +189,9 @@ export default function SubmissionPage() {
 <button
       type="button"
       onClick={() => router.push("/dashboard")}
-      className="bg-neutral-700 hover:bg-neutral-600 px-6 py-3 rounded-full text-white font-semibold mt-5 mx-5 sm:mx-25  flex items-center justify-center"
+      className="bg-neutral-700 hover:bg-neutral-600 px-6 py-3 rounded-full text-white font-semibold mt-5 mx-5 sm:mx-40  flex items-center justify-center"
     >
-      <FiArrowLeft className="text-2xl mr-2" />
+      <FiArrowLeft className="text-3xl pr-2" />
       Back to Dashboard
     </button>
       </form>

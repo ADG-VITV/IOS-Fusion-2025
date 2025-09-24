@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { auth } from "@/lib/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter, usePathname } from "next/navigation";
+import { FiArrowLeft } from "react-icons/fi";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -93,6 +94,14 @@ const LoginPage = () => {
               >
                 {loading ? "Signing in..." : "Sign in"}
               </button>
+               <button
+                  type="button"
+                  onClick={() => router.push("/")}
+                  className="bg-neutral-500 hover:bg-neutral-600 focus:bg-neutral-700 px-6 py-3 rounded-full text-white font-semibold mt-10 mx-auto flex items-center justify-center"
+                >
+                  <FiArrowLeft className="text-3xl pr-2" />
+                  Go to Home
+                </button>
             </div>
           </form>
         </div>
