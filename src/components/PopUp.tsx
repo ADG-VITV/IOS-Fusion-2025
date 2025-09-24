@@ -18,7 +18,8 @@ const GlassPopup: React.FC<GlassPopupProps> = ({ message, onClose }) => {
         minHeight: "180px",
         padding: "28px 24px 28px",
         borderRadius: "16px",
-        background: "#1E1E1E", // dark glassy
+        background: "#1E1E1E80", // dark glassy
+        backdropFilter: "blur(10px)",
         boxShadow: "0 8px 32px 0 rgba(20, 24, 40, 0.5)",
         border: "1px solid rgba(255,255,255,0.13)",
         display: "flex",
