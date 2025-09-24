@@ -62,8 +62,7 @@ export default function CreateTeam() {
   return (
     <section
       id="create-team"
-      className="relative flex justify-center items-center overflow-hidden text-white md:px-32 py-20 p-6 sm:p-10 min-h-screen"
-      style={{ background: 'linear-gradient(to right, #1e1b4b 0%, #000000 65%, #000000 100%)' }}
+      className="relative bg-[#1A1A1A] flex justify-center items-center overflow-hidden text-white md:px-32 py-20 p-6 sm:p-10 min-h-screen"
     >
       <div className="relative z-10 flex flex-col justify-center items-center w-full max-w-lg">
         <div className="flex flex-col items-center mb-10">
