@@ -7,6 +7,7 @@ import Partners from "@/sections/Partners";
 import FAQ from "@/sections/FAQ";
 import Footer from "@/sections/Footer";
 import ScrollTop from "@/components/ScrollTop";
+import Tracks from "@/sections/Tracks";
 
 export default function Home() {
 
@@ -21,6 +22,7 @@ export default function Home() {
       <Description />
       {/* <Speakers /> */}
       <Timeline />
+      <Tracks />
       <Partners />
       <FAQ />
       <Footer />

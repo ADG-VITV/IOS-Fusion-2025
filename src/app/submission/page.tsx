@@ -186,14 +186,14 @@ export default function SubmissionPage() {
         </button>
 
         {/* ⬅️ Back to Dashboard Button */}
-<button
-      type="button"
-      onClick={() => router.push("/dashboard")}
-      className="bg-neutral-700 hover:bg-neutral-600 px-6 py-3 rounded-full text-white font-semibold mt-5 mx-5 sm:mx-40  flex items-center justify-center"
-    >
-      <FiArrowLeft className="text-3xl pr-2" />
-      Back to Dashboard
-    </button>
+          <button
+            type="button"
+            onClick={() => router.push("/dashboard")}
+            className="bg-neutral-700 hover:bg-neutral-600 px-6 py-3 rounded-full text-white font-semibold mt-5 mx-5 sm:mx-40  flex items-center justify-center"
+          >
+            <FiArrowLeft className="text-3xl pr-2" />
+            Back to Dashboard
+          </button>
       </form>
     </div>
   );
