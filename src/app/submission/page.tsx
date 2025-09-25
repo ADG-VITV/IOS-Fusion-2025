@@ -19,8 +19,8 @@ export default function SubmissionPage() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [fileLink, setFileLink] = useState("");
-  const [team, setTeam] = useState<any | null>(null);
-  const [submission, setSubmission] = useState<any | null>(null);
+  const [team, setTeam] = useState<unknown | null>(null);
+  const [submission, setSubmission] = useState<unknown | null>(null);
   const [ready, setReady] = useState(false);
 
   const router = useRouter();

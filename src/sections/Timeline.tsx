@@ -60,7 +60,7 @@ export default function Timeline() {
   const [activeIndex, setActiveIndex] = useState(0);
   const segmentSize = 100 / (totalEvents - 1);
 
-  const handleSliderChange = (event: any, newValue: number | number[]) => {
+  const handleSliderChange = (event: unknown, newValue: number | number[]) => {
     const rangeValue = Array.isArray(newValue) ? newValue[0] : newValue;
     const newIndex = Math.round((100 - rangeValue) / segmentSize);
     setActiveIndex(newIndex);

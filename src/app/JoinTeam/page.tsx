@@ -12,7 +12,7 @@ export default function JoinTeam() {
 
   const [popupMessage, setPopupMessage] = useState("");
   const [popupVisible, setPopupVisible] = useState(false);
-  
+
   const showPopup = (message: string) => {
     setPopupMessage(message);
     setPopupVisible(true);
@@ -31,7 +31,7 @@ export default function JoinTeam() {
     }
 
     try {
-      const idToken = await user.getIdToken(); 
+      const idToken = await user.getIdToken();
 
       const response = await fetch("/api/join-team", {
         method: "POST",
@@ -47,9 +47,14 @@ export default function JoinTeam() {
       } else {
         showPopup(`Error joining team: ${data.error}`);
       }
-    } catch (err:any) {
-      console.error("Join team error:", err);
-      showPopup(`Unexpected error: ${err?.message || "check console"}`);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        console.error("Join team error:", err);
+        showPopup(`Unexpected error: ${err.message}`);
+      } else {
+        console.error("Join team error:", err);
+        showPopup("Unexpected error occurred. Check console.");
+      }
     }
   };
 
@@ -84,9 +89,9 @@ export default function JoinTeam() {
           </button>
         </form>
       </div>
-        {popupVisible && (
-      <GlassPopup message={popupMessage} onClose={() => setPopupVisible(false)} />
-    )}
+      {popupVisible && (
+        <GlassPopup message={popupMessage} onClose={() => setPopupVisible(false)} />
+      )}
     </section>
   );
 }

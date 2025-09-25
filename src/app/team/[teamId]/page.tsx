@@ -11,7 +11,7 @@ interface Team {
   teamName: string;
   teamTagline: string;
   members: string[];
-  createdAt: any;
+  createdAt: unknown;
 }
 
 export default function TeamPage() {
