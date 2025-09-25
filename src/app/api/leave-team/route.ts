@@ -41,8 +41,20 @@ export async function POST(req: NextRequest) {
     await batch.commit();
 
     return NextResponse.json({ message: "Left team successfully" }, { status: 200 });
-  } catch (err: any) {
-    console.error("Error in leave-team API:", err);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+  } catch (err: unknown) {
+  console.error("Error in leave-team API:", err);
+
+  if (err instanceof Error) {
+    return NextResponse.json(
+      { error: `Internal Server Error: ${err.message}` },
+      { status: 500 }
+    );
   }
+
+  return NextResponse.json(
+    { error: "Internal Server Error" },
+    { status: 500 }
+  );
+}
+
 }
