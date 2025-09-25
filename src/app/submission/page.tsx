@@ -15,12 +15,30 @@ import {
   serverTimestamp,
 } from "firebase/firestore";
 
+// ✅ Define interfaces for Firestore data
+interface Team {
+  id: string;
+  teamName: string;
+  [key: string]: unknown; // allow extra Firestore fields
+}
+
+interface Submission {
+  id: string;
+  teamId: string;
+  title: string;
+  description: string;
+  fileLink: string;
+  createdBy?: string;
+  createdAt?: unknown; // Firestore timestamp
+  [key: string]: unknown;
+}
+
 export default function SubmissionPage() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [fileLink, setFileLink] = useState("");
-  const [team, setTeam] = useState<unknown | null>(null);
-  const [submission, setSubmission] = useState<unknown | null>(null);
+  const [team, setTeam] = useState<Team | null>(null);
+  const [submission, setSubmission] = useState<Submission | null>(null);
   const [ready, setReady] = useState(false);
 
   const router = useRouter();
@@ -33,13 +51,16 @@ export default function SubmissionPage() {
         const userDoc = await getDoc(userDocRef);
 
         if (userDoc.exists()) {
-          const teamId = userDoc.data().teamId;
+          const teamId = userDoc.data().teamId as string | undefined;
           if (teamId) {
             const teamDocRef = doc(db, "teams", teamId);
             const teamDoc = await getDoc(teamDocRef);
 
             if (teamDoc.exists()) {
-              const teamData = { id: teamDoc.id, ...teamDoc.data() };
+              const teamData: Team = {
+                id: teamDoc.id,
+                ...(teamDoc.data() as object),
+              } as Team;
               setTeam(teamData);
 
               const q = query(
@@ -47,11 +68,13 @@ export default function SubmissionPage() {
                 where("teamId", "==", teamId)
               );
               const snapshot = await getDocs(q);
+
               if (!snapshot.empty) {
-                setSubmission({
+                const subData: Submission = {
                   id: snapshot.docs[0].id,
-                  ...snapshot.docs[0].data(),
-                });
+                  ...(snapshot.docs[0].data() as object),
+                } as Submission;
+                setSubmission(subData);
               }
             }
           }
@@ -140,8 +163,6 @@ export default function SubmissionPage() {
 
   return (
     <div className="min-h-screen bg-[#1A1A1A] text-white flex flex-col justify-center items-center pt-16 px-4">
-      {/* 🔙 Top Left Back Button */}
-
       <form
         onSubmit={handleSubmitIdea}
         className="max-w-2xl w-full mx-auto flex flex-col gap-5 bg-gradient-to-br from-neutral-900/80 to-neutral-950/80 backdrop-blur-xl border border-white/10 rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.6)] p-8 sm:p-12 transition-all duration-300 hover:bg-neutral-900 transform hover:scale-105 hover:shadow-[0_0_2rem_#1a0a3b]"
@@ -185,15 +206,14 @@ export default function SubmissionPage() {
           Submit
         </button>
 
-        {/* ⬅️ Back to Dashboard Button */}
-<button
-      type="button"
-      onClick={() => router.push("/dashboard")}
-      className="bg-neutral-700 hover:bg-neutral-600 px-6 py-3 rounded-full text-white font-semibold mt-5 mx-5 sm:mx-40  flex items-center justify-center"
-    >
-      <FiArrowLeft className="text-3xl pr-2" />
-      Back to Dashboard
-    </button>
+        <button
+          type="button"
+          onClick={() => router.push("/dashboard")}
+          className="bg-neutral-700 hover:bg-neutral-600 px-6 py-3 rounded-full text-white font-semibold mt-5 mx-5 sm:mx-40 flex items-center justify-center"
+        >
+          <FiArrowLeft className="text-3xl pr-2" />
+          Back to Dashboard
+        </button>
       </form>
     </div>
   );

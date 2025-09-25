@@ -1,27 +1,27 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { db } from "@/lib/firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { db, } from "@/lib/firebase";
+import { doc, getDoc, Timestamp } from "firebase/firestore";
 import { useParams, useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 import GlassPopup from "@/components/PopUp";
 
+// 🔹 Define Team type
 interface Team {
   teamName: string;
   teamTagline: string;
   members: string[];
-  createdAt: unknown;
+  createdAt: Timestamp | Date; // Firestore Timestamp or converted Date
 }
 
 export default function TeamPage() {
-  const params = useParams();
+  const params = useParams<{ teamId?: string | string[] }>();
+
   const teamId =
-    params && "teamId" in params
-      ? Array.isArray(params.teamId)
-        ? params.teamId[0]
-        : params.teamId
-      : null;
+    params?.teamId && Array.isArray(params.teamId)
+      ? params.teamId[0]
+      : (params?.teamId as string | null);
 
   const { user } = useAuth();
   const router = useRouter();
@@ -32,16 +32,17 @@ export default function TeamPage() {
 
   const [popupMessage, setPopupMessage] = useState("");
   const [popupVisible, setPopupVisible] = useState(false);
-    
+
   const showPopup = (message: string) => {
-      setPopupMessage(message);
-      setPopupVisible(true);
+    setPopupMessage(message);
+    setPopupVisible(true);
   };
+
   useEffect(() => {
     const fetchTeam = async () => {
       if (!teamId) return;
       try {
-        const teamRef = doc(db, "teams", teamId as string);
+        const teamRef = doc(db, "teams", teamId);
         const teamSnap = await getDoc(teamRef);
 
         if (teamSnap.exists()) {
@@ -54,7 +55,7 @@ export default function TeamPage() {
             const userSnap = await getDoc(userRef);
 
             if (userSnap.exists()) {
-              const email = userSnap.data().email as string;
+              const email = userSnap.data().email as string | undefined;
               if (email) {
                 const emailPart = email.split("@")[0];
                 const name = emailPart
@@ -73,7 +74,7 @@ export default function TeamPage() {
         } else {
           setTeam(null);
         }
-      } catch (err) {
+      } catch (err: unknown) {
         console.error("Error fetching team:", err);
         setTeam(null);
       } finally {
@@ -88,7 +89,7 @@ export default function TeamPage() {
     if (!user || !teamId) return;
 
     try {
-      const idToken = await user.getIdToken(); // get Firebase Auth token
+      const idToken = await user.getIdToken();
 
       const res = await fetch("/api/leave-team", {
         method: "POST",
@@ -103,7 +104,7 @@ export default function TeamPage() {
         const { error } = await res.json();
         showPopup(`Error leaving team: ${error}`);
       }
-    } catch (err) {
+    } catch (err: unknown) {
       console.error("Error leaving team:", err);
       showPopup("Unexpected error.");
     }
@@ -157,7 +158,7 @@ export default function TeamPage() {
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-t border-white/10 pt-4">
           <p className="text-sm text-neutral-500">
             Created At:{" "}
-            {team.createdAt?.toDate
+            {team.createdAt instanceof Timestamp
               ? team.createdAt.toDate().toLocaleString()
               : new Date(team.createdAt).toLocaleString()}
           </p>
@@ -172,8 +173,10 @@ export default function TeamPage() {
           )}
         </div>
       </div>
-    </main>
 
+      {popupVisible && (
+        <GlassPopup message={popupMessage} onClose={() => setPopupVisible(false)} />
+      )}
+    </main>
   );
 }
-
