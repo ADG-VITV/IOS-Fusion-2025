@@ -46,7 +46,6 @@ export default function DashboardPage() {
 
   if (!user) return null;
 
-  // 🔥 Conditional cards
   const dashboardCards = teamId
     ? [
         {
@@ -83,7 +82,6 @@ export default function DashboardPage() {
         },
       ];
 
-  // 🔑 Dynamic grid classes
   const gridClasses =
     dashboardCards.length === 1
       ? "grid-cols-1 justify-items-center"
@@ -93,7 +91,11 @@ export default function DashboardPage() {
 
   return (
     <main
-      className="min-h-screen bg-[#1A1A1A] text-white flex flex-col justify-center items-center p-4 sm:p-8 pt-24"
+      className="min-h-screen bg-black text-white p-4 sm:p-8 pt-24"
+      style={{
+        background:
+          "linear-gradient(to right, #1e1b4b 0%, #000000 65%, #000000 100%)",
+      }}
     >
       <div className="max-w-7xl mx-auto">
         <button
@@ -110,7 +112,7 @@ export default function DashboardPage() {
           Logout
         </button>
 
-        <h1 className="text-4xl sm:text-5xl md:text-6xl mt-12 font-bold custom-font text-center sm:-mt-10">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl mt-12 font-bold custom-font text-center">
           Dashboard
         </h1>
         <p className="mt-2 text-center text-neutral-400 mb-10 sm:mb-14 md:mb-20">
@@ -130,7 +132,7 @@ export default function DashboardPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="flex flex-col items-start p-4 sm:p-6 relative h-[25rem] sm:h-[30rem] rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.6)] bg-gradient-to-br from-neutral-900/80 to-neutral-950/80 backdrop-blur-xl border border-white/10 hover:bg-neutral-900 transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_2rem_#1a0a3b]"
+                className="border border-white/[0.1] flex flex-col items-start p-4 sm:p-6 relative h-[25rem] sm:h-[30rem] rounded-2xl shadow-2xl bg-neutral-950 hover:bg-neutral-900 transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_2rem_#1a0a3b]"
               >
                 <Icon className="absolute h-6 w-6 sm:h-8 sm:w-8 -top-3 sm:-top-4 -left-3 sm:-left-4 text-white" />
                 <Icon className="absolute h-6 w-6 sm:h-8 sm:w-8 -bottom-3 sm:-bottom-4 -left-3 sm:-left-4 text-white" />

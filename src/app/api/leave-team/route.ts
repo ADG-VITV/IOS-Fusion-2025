@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { db } from "@/lib/firebaseAdmin"; // your Admin SDK wrapper
+import { db } from "@/lib/firebaseAdmin"; 
 import { getAuth } from "firebase-admin/auth";
 
 export async function POST(req: NextRequest) {
@@ -10,7 +10,6 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Missing fields" }, { status: 400 });
     }
 
-    // Verify Firebase ID token
     const decoded = await getAuth().verifyIdToken(idToken);
     const userId = decoded.uid;
 
@@ -27,18 +26,14 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "You are not a member of this team" }, { status: 403 });
     }
 
-    // Run everything in a batch
     const batch = db.batch();
 
-    // Remove user from members
     batch.update(teamRef, {
       members: teamData.members.filter((m: string) => m !== userId),
     });
 
-    // Clear user's teamId
     batch.update(userRef, { teamId: null });
 
-    // If last member -> delete team
     if (teamData.members.length === 1 && teamData.members[0] === userId) {
       batch.delete(teamRef);
     }

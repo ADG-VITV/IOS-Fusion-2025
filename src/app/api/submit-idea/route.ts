@@ -10,7 +10,6 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Missing fields" }, { status: 400 });
     }
 
-    // Check if team already submitted
     const submissionsRef = collection(db, "submissions");
     const q = query(submissionsRef, where("teamId", "==", teamId));
     const snapshot = await getDocs(q);
@@ -22,7 +21,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Otherwise, create new submission
     const docRef = await addDoc(submissionsRef, {
       teamId,
       title,
