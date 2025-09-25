@@ -113,7 +113,7 @@ const LoginPage = () => {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-3 py-2 mt-1 text-[#e5e7eb] bg-gray-900 border border-[#2d2f45] rounded-md shadow-sm focus:outline-none focus:border-[#4b5dff]"
+                className="w-full px-3 py-2 mt-1 text-[#e5e7eb] bg-gray-900 border border-[#2d2f45] rounded-md shadow-sm focus:outline-none focus:border-[#4b5dff] password-reveal-icon"
               />
             </div>
             {error && (
