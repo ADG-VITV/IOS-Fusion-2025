@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 import GlassPopup from "@/components/PopUp";
+import { FiArrowLeft } from "react-icons/fi";
 
 export default function JoinTeam() {
   const [teamId, setTeamId] = useState("");
@@ -83,9 +84,17 @@ export default function JoinTeam() {
 
           <button
             type="submit"
-            className="bg-gradient-to-r from-violet-600 to-fuchsia-500 hover:opacity-90 px-8 py-3 rounded-lg font-semibold transition self-center mt-4"
+            className="bg-gradient-to-r from-violet-600 to-fuchsia-500 hover:opacity-90 px-8 py-3 text-xl rounded-lg font-semibold transition self-center mt-4"
           >
             Join Team
+          </button>
+          <button
+            type="button"
+            onClick={() => router.push("/dashboard")}
+            className="bg-neutral-700 hover:bg-neutral-600 px-6 py-3 rounded-full text-white text-md font-semibold mx-10 sm:mx-35  flex items-center justify-center"
+          >
+            <FiArrowLeft className="text-3xl pr-2" />
+            Back to Dashboard
           </button>
         </form>
       </div>

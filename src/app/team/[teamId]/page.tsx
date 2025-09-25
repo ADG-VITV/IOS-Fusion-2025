@@ -6,6 +6,7 @@ import { doc, getDoc, Timestamp } from "firebase/firestore";
 import { useParams, useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 import GlassPopup from "@/components/PopUp";
+import { FiArrowLeft } from "react-icons/fi";
 
 // 🔹 Define Team type
 interface Team {
@@ -171,6 +172,16 @@ export default function TeamPage() {
               Leave Team
             </button>
           )}
+        </div>
+        <div className="flex justify-center items-center mt-10">
+          <button
+            type="button"
+            onClick={() => router.push("/dashboard")}
+            className="bg-neutral-700 hover:bg-neutral-600 px-6 py-3 rounded-full text-white text-md font-semibold mx-10 sm:mx-35  flex items-center justify-center"
+          >
+            <FiArrowLeft className="text-3xl pr-2" />
+            Back to Dashboard
+          </button>
         </div>
       </div>
 

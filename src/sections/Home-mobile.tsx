@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <>
       <main className="bg-[#1A1A1A]">
-        <div className="p-4 h-full flex flex-col items-center gap-10">
+        <div className="p-4 h-full flex flex-col items-center gap-10 mb-10">
           <nav className="flex justify-between w-full max-w-md">
             <Image
               className="w-[8rem]"
