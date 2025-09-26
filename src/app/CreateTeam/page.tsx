@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
 import GlassPopup from '@/components/PopUp';
+import { FiArrowLeft } from 'react-icons/fi';
+import NavBar from '../navbar/NavBar';
 
 export default function CreateTeam() {
   const [teamName, setTeamName] = useState('');
@@ -64,6 +66,7 @@ export default function CreateTeam() {
       id="create-team"
       className="relative bg-[#1A1A1A] flex justify-center items-center overflow-hidden text-white md:px-32 py-20 p-6 sm:p-10 min-h-screen"
     >
+      <NavBar />
       <div className="relative z-10 flex flex-col justify-center items-center w-full max-w-lg">
         <div className="flex flex-col items-center mb-10">
           <h1 className="text-4xl sm:text-5xl font-bold custom-font text-center">Create Team</h1>
@@ -90,9 +93,17 @@ export default function CreateTeam() {
 
           <button
             type="submit"
-            className="bg-gradient-to-r from-violet-600 to-fuchsia-500 hover:opacity-90 px-8 py-3 rounded-lg font-semibold transition self-center mt-4"
+            className="bg-gradient-to-r from-violet-600 to-fuchsia-500 hover:opacity-90 px-8 py-3 text-xl rounded-lg font-semibold transition self-center mt-4"
           >
             Create Team
+          </button>
+          <button
+            type="button"
+            onClick={() => router.push("/dashboard")}
+            className="bg-neutral-700 hover:bg-neutral-600 px-6 py-3 rounded-full text-white text-md font-semibold mx-10 sm:mx-35  flex items-center justify-center"
+          >
+            <FiArrowLeft className="text-3xl pr-2" />
+            Back to Dashboard
           </button>
         </form>
       </div>

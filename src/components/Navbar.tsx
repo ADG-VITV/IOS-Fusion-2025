@@ -8,7 +8,7 @@ export default function Navbar() {
         <div className="flex items-center ">
           <Image
             className="w-20 md:w-28 h-auto mr-1"
-            src="/adglogo.png"
+            src="/adg_nav.png"
             width={112}
             height={112}
             alt="ADG Logo"

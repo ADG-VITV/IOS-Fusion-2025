@@ -9,6 +9,8 @@ import Link from "next/link";
 import { EvervaultCard, Icon } from "@/components/ui/evervault-card";
 import { motion } from "framer-motion";
 import { signOut } from "firebase/auth";
+import { checkSessionExpiry } from "@/lib/session";
+import NavBar from "../navbar/NavBar";
 
 export default function DashboardPage() {
   const { user, loading } = useAuth();
@@ -18,31 +20,32 @@ export default function DashboardPage() {
   const [checkingTeam, setCheckingTeam] = useState(true);
 
   useEffect(() => {
-    if (!loading && !user) {
-      router.push("/login");
-    }
+    const handleSessionAndFetch = async () => {
+      if (!loading && !user) {
+        router.push("/login");
+        return;
+      }
 
-    const fetchTeamId = async () => {
       if (user) {
+        const expired = await checkSessionExpiry();
+        if (expired) {
+          await signOut(auth);
+          router.push("/login");
+          return;
+        }
+
         const userRef = doc(db, "users", user.uid);
         const userSnap = await getDoc(userRef);
         if (userSnap.exists() && userSnap.data().teamId) {
           setTeamId(userSnap.data().teamId);
         }
       }
+
       setCheckingTeam(false);
     };
 
-    fetchTeamId();
+    handleSessionAndFetch();
   }, [user, loading, router]);
-
-  if (loading || checkingTeam) {
-    return (
-      <div className="flex items-center justify-center min-h-screen bg-black text-white">
-        Loading...
-      </div>
-    );
-  }
 
   if (!user) return null;
 
@@ -97,6 +100,7 @@ export default function DashboardPage() {
           "linear-gradient(to right, #1e1b4b 0%, #000000 65%, #000000 100%)",
       }}
     >
+      <NavBar />
       <div className="max-w-7xl mx-auto">
         <button
           onClick={async () => {

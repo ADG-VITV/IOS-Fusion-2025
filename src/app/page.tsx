@@ -8,6 +8,8 @@ import FAQ from "@/sections/FAQ";
 import Footer from "@/sections/Footer";
 import ScrollTop from "@/components/ScrollTop";
 // import Speakers from "@/sections/Speakers";
+import Tracks from "@/sections/Tracks";
+
 export default function Home() {
 
   return (
@@ -21,6 +23,7 @@ export default function Home() {
       <Description />
       {/* <Speakers /> */}
       <Timeline />
+      <Tracks />
       <Partners />
       <FAQ />
       <Footer />
