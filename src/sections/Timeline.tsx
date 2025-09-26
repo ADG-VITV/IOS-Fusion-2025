@@ -40,17 +40,17 @@ const useSmoothSlider = (targetValue: number, speed: number = 0.1) => {
 
 // --- Event Data (No Changes) ---
 const day1Events = [
-  { event: "OPENING & KICKOFF WORKSHOPS", time: "11:00 AM - 12:00 PM", venue: "Welcome note, icebreakers, and hands-on starter workshops with fun team games." },
-  { event: "KEYNOTE TALKS & INTERACTIVE Q&A", time: "12:00 PM - 1:30 PM", venue: "Experts share insights, spiced with audience polls and mini activities." },
-  { event: "TEAM FORMATION & IDEA JAM", time: "1:30 PM - 2:30 PM", venue: "Form teams, ideate solutions, and play quick creative thinking games." },
-  { event: "HACKATHON LAUNCH CHALLENGE", time: "2:30 PM - 4:00 PM", venue: "Coding marathon starts with surprise fun challenges to energize everyone." },
+  { event: "OPENING & KICKOFF WORKSHOPS", time: "1:30 PM - 2:00 PM", venue: "Welcome note, icebreakers, and hands-on starter workshops with fun team games." },
+  { event: "WORKSHOP", time: "12:00 PM - 1:30 PM", venue: "iOS & ML workshops to build technical skills" },
+  { event: "SPEAKER SESSION", time: "5:00 PM - 7:00 PM", venue: "Key insights from the speaker." },
+  { event: "DINNER AND HACK 0", time: "7:00 PM - 11:30 PM", venue: "Dinner followed by kickoff and brainstorming session." },
 ];
 
 const day2Events = [
-  { event: "MENTORSHIP & ACTIVITY ROUNDS", time: "10:00 AM - 11:00 AM", venue: "Guided mentor sessions mixed with short games to refresh minds." },
-  { event: "MIDWAY CHECKPOINT & FUN BOOSTERS", time: "11:00 AM - 1:00 PM", venue: "Progress review combined with mini contests and relaxation activities." },
-  { event: "PROJECT DEMOS & INTERACTIVE SHOWCASE", time: "1:00 PM - 2:00 PM", venue: "Teams present work with live interactions and engaging activities." },
-  { event: "CLOSING CEREMONY & CELEBRATION", time: "2:00 PM - 3:00 PM", venue: "Final presentations, awards, and a wrap-up with fun highlights and games." },
+  { event: "NIGHT HACKATHON", time: "11:30 AM - 8:00 AM", venue: "Hack-1 to Hack-3 with music, entertainment, and games." },
+  { event: "BREAK", time: "8:00 AM - 1:00 PM", venue: "" },
+  { event: "PROJECT REVIEW", time: "2:00 PM - 3:30 PM", venue: "Teams present work with live interactions and engaging activities." },
+  { event: "Final Hack & Ceremony", time: "3:30 PM - 6:00 PM", venue: "Final presentations, awards, and a wrap-up with fun highlights and games." },
 ];
 
 const allEvents = [...day1Events, ...day2Events];
