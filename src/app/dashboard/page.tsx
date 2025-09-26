@@ -10,6 +10,7 @@ import { EvervaultCard, Icon } from "@/components/ui/evervault-card";
 import { motion } from "framer-motion";
 import { signOut } from "firebase/auth";
 import { checkSessionExpiry } from "@/lib/session";
+import NavBar from "../navbar/NavBar";
 
 export default function DashboardPage() {
   const { user, loading } = useAuth();
@@ -99,6 +100,7 @@ export default function DashboardPage() {
           "linear-gradient(to right, #1e1b4b 0%, #000000 65%, #000000 100%)",
       }}
     >
+      <NavBar />
       <div className="max-w-7xl mx-auto">
         <button
           onClick={async () => {

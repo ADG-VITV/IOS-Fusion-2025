@@ -11,6 +11,7 @@ import {
 import { useRouter } from "next/navigation";
 import { FiArrowLeft } from "react-icons/fi";
 import { setLoginTime } from "@/lib/session";
+import NavBar from "../navbar/NavBar";
 
 const LoginPage = () => {
   const [checkingAuth, setCheckingAuth] = useState(true);
@@ -71,6 +72,7 @@ const LoginPage = () => {
 
   return (
     <div className="flex bg-[#1A1A1A] items-center justify-center min-h-screen">
+      <NavBar />
       <GlareHover
         glareColor="#ffffff"
         glareOpacity={0.3}

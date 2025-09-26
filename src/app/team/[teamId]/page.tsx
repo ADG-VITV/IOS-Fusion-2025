@@ -7,6 +7,7 @@ import { useParams, useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 import GlassPopup from "@/components/PopUp";
 import { FiArrowLeft } from "react-icons/fi";
+import NavBar from "@/app/navbar/NavBar";
 
 // 🔹 Define Team type
 interface Team {
@@ -129,6 +130,7 @@ export default function TeamPage() {
 
   return (
     <main className="min-h-screen bg-gradient-to-br bg-[#1A1A1A] text-white flex justify-center items-center p-6 sm:p-12 pt-24">
+      <NavBar />
       <div className="max-w-3xl w-full mx-auto bg-gradient-to-br from-neutral-900/80 to-neutral-950/80 backdrop-blur-xl border border-white/10 rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.6)] p-8 sm:p-12 transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_2rem_#1a0a3b]">
         
         <div className="mb-6 border-b border-white/10 pb-4 flex flex-col justify-center items-center">

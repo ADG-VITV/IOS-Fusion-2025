@@ -14,6 +14,7 @@ import {
   addDoc,
   serverTimestamp,
 } from "firebase/firestore";
+import NavBar from "../navbar/NavBar";
 
 // ✅ Define interfaces for Firestore data
 interface Team {
@@ -163,6 +164,7 @@ export default function SubmissionPage() {
 
   return (
     <div className="min-h-screen bg-[#1A1A1A] text-white flex flex-col justify-center items-center pt-16 px-4">
+      <NavBar /> 
       <form
         onSubmit={handleSubmitIdea}
         className="max-w-2xl w-full mx-auto flex flex-col gap-5 bg-gradient-to-br from-neutral-900/80 to-neutral-950/80 backdrop-blur-xl border border-white/10 rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.6)] p-8 sm:p-12 transition-all duration-300 hover:bg-neutral-900 transform hover:scale-105 hover:shadow-[0_0_2rem_#1a0a3b]"

@@ -12,7 +12,7 @@ export default function Home() {
           <nav className="flex justify-between w-full max-w-md">
             <Image
               className="w-[8rem]"
-              src="/adglogo.png"
+              src="/adg_nav.png"
               width={500}
               height={800}
               alt="Landing page"

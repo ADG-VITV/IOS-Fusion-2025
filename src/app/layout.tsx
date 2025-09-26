@@ -22,7 +22,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={archivo.className}>
-        <NavBar />
         <AuthProvider>{children}</AuthProvider>
       </body>
     </html>

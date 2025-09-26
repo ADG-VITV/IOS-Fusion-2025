@@ -5,6 +5,7 @@ import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
 import GlassPopup from '@/components/PopUp';
 import { FiArrowLeft } from 'react-icons/fi';
+import NavBar from '../navbar/NavBar';
 
 export default function CreateTeam() {
   const [teamName, setTeamName] = useState('');
@@ -65,6 +66,7 @@ export default function CreateTeam() {
       id="create-team"
       className="relative bg-[#1A1A1A] flex justify-center items-center overflow-hidden text-white md:px-32 py-20 p-6 sm:p-10 min-h-screen"
     >
+      <NavBar />
       <div className="relative z-10 flex flex-col justify-center items-center w-full max-w-lg">
         <div className="flex flex-col items-center mb-10">
           <h1 className="text-4xl sm:text-5xl font-bold custom-font text-center">Create Team</h1>
